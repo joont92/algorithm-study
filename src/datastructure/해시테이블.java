@@ -1,5 +1,7 @@
 package datastructure;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -7,19 +9,26 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * - 기존의 저장공간을 확장해서 사용하는 Open Hashing 기법(Chaining 기법)
- * - 해시테이블 address 의 value 로 LinkedList 를 가진다
- * - address 가 충돌할 경우 value 에 있는 LinkedList 에 key : value 를 저장한다
- */
 public class 해시테이블 {
+    /**
+     * - 기존의 저장공간을 확장해서 사용하는 Open Hashing 기법(Chaining 기법)
+     * - 해시테이블 address 의 value 로 LinkedList 를 가진다
+     * - address 가 충돌할 경우 value 에 있는 LinkedList 에 key : value 를 저장한다
+     */
     static class OpenHashTable {
+        private MessageDigest messageDigest;
         private List<LinkedList<KeyValue>> tables;
 
         public OpenHashTable() {
             tables = Stream.generate((Supplier<LinkedList<KeyValue>>) LinkedList::new)
                 .limit(20)
                 .collect(Collectors.toList());
+
+            try {
+                messageDigest = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                //
+            }
         }
 
         private int hashFunction(String key) {
