@@ -1,4 +1,4 @@
-package datastructure.이진트리;
+package datastructure.이진트리_bak;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class 이진트리Test {
         binaryTree.insert(20);
         binaryTree.insert(30);
 
-        Node head = binaryTree.getHead();
+        노드 head = binaryTree.getHead();
         assertThat(head.getLeft()).isEmpty();
         assertThat(head.getRight()).isNotEmpty();
 
@@ -28,7 +28,7 @@ public class 이진트리Test {
         binaryTree.insert(5);
         binaryTree.insert(1);
 
-        Node head = binaryTree.getHead();
+        노드 head = binaryTree.getHead();
         assertThat(head.getLeft()).isNotEmpty();
         assertThat(head.getRight()).isEmpty();
 

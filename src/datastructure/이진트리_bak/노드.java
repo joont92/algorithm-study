@@ -1,15 +1,15 @@
-package datastructure.이진트리;
+package datastructure.이진트리_bak;
 
 import java.util.Optional;
 
-public class Node {
+public class 노드 {
     private Integer value;
-    private Node left;
-    private Node right;
+    private 노드 left;
+    private 노드 right;
 
-    private Node latest;
+    private 노드 latest;
 
-    public Node(Integer value) {
+    public 노드(Integer value) {
         this.value = value;
     }
 
@@ -17,21 +17,25 @@ public class Node {
         return value;
     }
 
-    public Optional<Node> getLeft() {
+    public Optional<노드> getLeft() {
         return Optional.ofNullable(left);
     }
 
-    public Optional<Node> getRight() {
+    public Optional<노드> getRight() {
         return Optional.ofNullable(right);
+    }
+
+    public static void test() {
+
     }
 
     public boolean insert(Integer value) {
         if(value < this.value && left == null) {
-            left = new Node(value);
+            left = new 노드(value);
             latest = left;
             return true;
         } else if (value > this.value && right == null) {
-            right = new Node(value);
+            right = new 노드(value);
             latest = right;
             return true;
         }
@@ -39,16 +43,16 @@ public class Node {
         return false;
     }
 
-    public Optional<Node> getLatestInsertedNode() {
+    public Optional<노드> getLatestInsertedNode() {
         return Optional.ofNullable(latest);
     }
 
-    public Optional<Node> select(Integer value) {
+    public Optional<노드> select(Integer value) {
         return nextNode(value)
             .filter(n -> n.getValue().equals(value));
     }
 
-    public Optional<Node> nextNode(Integer value) {
+    public Optional<노드> nextNode(Integer value) {
         if(value.equals(this.value)) {
             return Optional.of(this);
         } if(value < this.value) {

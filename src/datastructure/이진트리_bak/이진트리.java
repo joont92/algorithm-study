@@ -1,14 +1,14 @@
-package datastructure.이진트리;
+package datastructure.이진트리_bak;
 
 import java.util.Optional;
 
 public class 이진트리 {
-    private Node head;
-    private Node current;
+    private 노드 head;
+    private 노드 current;
 
     public void insert(Integer value) {
         if(head == null) {
-            head = new Node(value);
+            head = new 노드(value);
             return;
         }
 
@@ -19,16 +19,16 @@ public class 이진트리 {
         }
     }
 
-    public Optional<Node> search(Integer value) {
+    public Optional<노드> search(Integer value) {
         current = head;
 
-        Optional<Node> result;
+        Optional<노드> result;
         while ((result = current.nextNode(value)).isPresent()) {
-            Node node = result.get();
-            if(node.getValue().equals(value)) {
-                return Optional.of(node);
+            노드 노드 = result.get();
+            if(노드.getValue().equals(value)) {
+                return Optional.of(노드);
             }
-            current = node;
+            current = 노드;
         }
 
         return Optional.empty();
@@ -38,7 +38,7 @@ public class 이진트리 {
 
     }
 
-    public Node getHead() {
+    public 노드 getHead() {
         if(head == null) {
             throw new IllegalStateException("there's no data");
         }
