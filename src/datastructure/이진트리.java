@@ -35,6 +35,31 @@ public class 이진트리 {
         }
     }
 
+    public int select(Integer value) {
+        Node current = head;
+        int count = 0;
+
+        int result;
+        while((result = current.compare(value)) != 0) {
+            if(result == -1) {
+                Optional<Node> left = current.left();
+                if(!left.isPresent()) {
+                    return -1;
+                }
+                current = left.get();
+            } else if(result == 1) {
+                Optional<Node> right = current.right();
+                if(!right.isPresent()) {
+                    return -1;
+                }
+                current = right.get();
+            }
+            count++;
+        }
+
+        return count;
+    }
+
     private class Node {
         private Integer value;
         private Node left;
