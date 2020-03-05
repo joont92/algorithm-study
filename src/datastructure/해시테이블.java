@@ -1,7 +1,5 @@
 package datastructure;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -10,29 +8,24 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class 해시테이블 {
+    private static final int DEFAULT_TABLE_SIZE = 20;
     /**
-     * - 기존의 저장공간을 확장해서 사용하는 Open Hashing 기법(Chaining 기법)
+     * Open Hashing 기법(Chaining 기법)
+     * - 기존의 저장공간을 확장해서 사용함
      * - 해시테이블 address 의 value 로 LinkedList 를 가진다
      * - address 가 충돌할 경우 value 에 있는 LinkedList 에 key : value 를 저장한다
      */
     static class OpenHashTable {
-        private MessageDigest messageDigest;
         private List<LinkedList<KeyValue>> tables;
 
         public OpenHashTable() {
             tables = Stream.generate((Supplier<LinkedList<KeyValue>>) LinkedList::new)
-                .limit(20)
+                .limit(DEFAULT_TABLE_SIZE)
                 .collect(Collectors.toList());
-
-            try {
-                messageDigest = MessageDigest.getInstance("SHA-256");
-            } catch (NoSuchAlgorithmException e) {
-                //
-            }
         }
 
         private int hashFunction(String key) {
-            return key.charAt(0) % 20;
+            return key.charAt(0) % DEFAULT_TABLE_SIZE;
         }
 
         public void save(String key, String value) {
@@ -63,38 +56,44 @@ public class 해시테이블 {
         }
     }
 
+    /**
+     * Closing Hashing(Linear Probing 기법)
+     * - 기존의 저장공간 외의 공간을 활용하는 기법
+     * - address 가 충돌할 경우 다음 address 로 이동해서 값을 저장한다
+     */
     static class CloseHashTable {
+        private int tableSize = DEFAULT_TABLE_SIZE * 2;
         private List<KeyValue> tables;
 
         public CloseHashTable() {
             tables = Stream.generate(KeyValue::empty)
-                .limit(20)
+                .limit(tableSize)
                 .collect(Collectors.toList());
         }
 
         private int hashFunction(String key) {
-            return key.charAt(0) % 20;
+            return key.charAt(0) % DEFAULT_TABLE_SIZE;
         }
 
         public void save(String key, String value) {
             int address = hashFunction(key);
 
-            for (int i = address; i < 20; i++) {
-                if(tables.get(address).isEmpty()) {
-                    tables.set(address, new KeyValue(key, value));
+            for (int i = address; i < tableSize; i++) {
+                KeyValue keyValue = tables.get(i);
+                if(keyValue.isEmpty() || keyValue.isKeyEquals(key)) {
+                    tables.set(i, new KeyValue(key, value));
                     break;
                 }
-
-                tables.get(address).setValue(value);
             }
         }
 
         public Optional<String> read(String key) {
             int address = hashFunction(key);
 
-            for (int i = address; i < 20; i++) {
-                if (!tables.get(address).isEmpty()) {
-                    return Optional.of(tables.get(address).getValue());
+            for (int i = address; i < tableSize; i++) {
+                KeyValue keyValue = tables.get(i);
+                if (keyValue.isKeyEquals(key)) {
+                    return Optional.of(keyValue.getValue());
                 }
             }
 
