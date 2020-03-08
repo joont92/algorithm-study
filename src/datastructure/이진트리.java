@@ -35,7 +35,11 @@ public class 이진트리 {
         }
     }
 
-    public int select(Integer value) {
+    /**
+     * @param value
+     * @return 몇 번 만에 찾았는지
+     */
+    public int exist(Integer value) {
         Node current = head;
         int count = 0;
 
@@ -60,6 +64,37 @@ public class 이진트리 {
         return count;
     }
 
+    public boolean delete(Integer value) {
+        Node current = head;
+
+        while(true) {
+            int result = current.compare(value);
+            if(result == -1) {
+                Optional<Node> left = current.left();
+                if(!left.isPresent()) {
+                    return false;
+                }
+
+                if(left.get().compare(value) == 0) {
+                    current.removeLeft();
+                    return true;
+                }
+                current = left.get();
+            } else if(result == 1) {
+                Optional<Node> right = current.right();
+                if(!right.isPresent()) {
+                    return false;
+                }
+
+                if(right.get().compare(value) == 0) {
+                    current.removeRight();
+                    return true;
+                }
+                current = right.get();
+            }
+        }
+    }
+
     private class Node {
         private Integer value;
         private Node left;
@@ -81,12 +116,20 @@ public class 이진트리 {
             this.left = new Node(value);
         }
 
+        public void removeLeft() {
+            this.left = null;
+        }
+
         public Optional<Node> right() {
             return Optional.ofNullable(right);
         }
 
         public void initRight(Integer value) {
             this.right = new Node(value);
+        }
+
+        public void removeRight() {
+            this.right = null;
         }
     }
 }
