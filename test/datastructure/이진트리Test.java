@@ -44,6 +44,19 @@ public class 이진트리Test {
         assertThat(binaryTree.exist(19)).isEqualTo(-1);
     }
 
+    @Test
+    public void 리프_노드가_하나인_노드를_삭제한다() {
+        이진트리 binaryTree = factory();
+        assertThat(binaryTree.delete(17)).isTrue();
+
+        assertThat(binaryTree.exist(17)).isEqualTo(-1);
+        assertThat(binaryTree.exist(19)).isEqualTo(2);
+
+        assertThat(binaryTree.delete(3)).isTrue();
+        assertThat(binaryTree.exist(3)).isEqualTo(-1);
+        assertThat(binaryTree.exist(2)).isEqualTo(2);
+    }
+
     private 이진트리 factory() {
         /*
                   10

@@ -70,27 +70,37 @@ public class 이진트리 {
         while(true) {
             int result = current.compare(value);
             if(result == -1) {
-                Optional<Node> left = current.left();
-                if(!left.isPresent()) {
+                Optional<Node> opt = current.left();
+                if(!opt.isPresent()) {
                     return false;
                 }
 
-                if(left.get().compare(value) == 0) {
-                    current.removeLeft();
+                Node left = opt.get();
+                if(left.compare(value) == 0) {
+                    if(left.isLeaf()) {
+                        current.removeLeft();
+                    } else {
+                        current.left = left.nextNode();
+                    }
                     return true;
                 }
-                current = left.get();
+                current = left;
             } else if(result == 1) {
-                Optional<Node> right = current.right();
-                if(!right.isPresent()) {
+                Optional<Node> opt = current.right();
+                if(!opt.isPresent()) {
                     return false;
                 }
 
-                if(right.get().compare(value) == 0) {
-                    current.removeRight();
+                Node right = opt.get();
+                if(right.compare(value) == 0) {
+                    if(right.isLeaf()) {
+                        current.removeRight();
+                    } else {
+                        current.right = right.nextNode();
+                    }
                     return true;
                 }
-                current = right.get();
+                current = right;
             }
         }
     }
@@ -130,6 +140,20 @@ public class 이진트리 {
 
         public void removeRight() {
             this.right = null;
+        }
+
+        public boolean isLeaf() {
+            return left == null && right == null;
+        }
+
+        public Node nextNode() {
+            if(left == null) {
+                return right;
+            } else if (right == null) {
+                return left;
+            }
+
+            return null;
         }
     }
 }
