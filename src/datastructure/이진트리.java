@@ -65,44 +65,52 @@ public class 이진트리 {
     }
 
     public boolean delete(Integer value) {
+        Node parent = head;
         Node current = head;
 
         while(true) {
-            int result = current.compare(value);
-            if(result == -1) {
+            if(current.compare(value) == 0) {
+                break;
+            } else if(current.compare(value) == -1) {
+                parent = current;
                 Optional<Node> opt = current.left();
                 if(!opt.isPresent()) {
                     return false;
                 }
-
-                Node left = opt.get();
-                if(left.compare(value) == 0) {
-                    if(left.isLeaf()) {
-                        current.removeLeft();
-                    } else {
-                        current.left = left.nextNode();
-                    }
-                    return true;
-                }
-                current = left;
-            } else if(result == 1) {
+                current = opt.get();
+            } else if(current.compare(value) == 1) {
+                parent = current;
                 Optional<Node> opt = current.right();
                 if(!opt.isPresent()) {
                     return false;
                 }
-
-                Node right = opt.get();
-                if(right.compare(value) == 0) {
-                    if(right.isLeaf()) {
-                        current.removeRight();
-                    } else {
-                        current.right = right.nextNode();
-                    }
-                    return true;
-                }
-                current = right;
+                current = opt.get();
             }
         }
+
+        if(current.isLeaf()) {
+            parent.orphan(value);
+        } else {
+            Optional<Node> leftOpt = current.left();
+            Optional<Node> rightOpt = current.right();
+
+            if(leftOpt.isPresent() && !rightOpt.isPresent()) {
+                Node left = leftOpt.get();
+
+                parent.left = left;
+                current = left;
+            } else if(!leftOpt.isPresent() && rightOpt.isPresent()) {
+                Node right = rightOpt.get();
+
+                parent.right = right;
+                current = right;
+            } else {
+                // 왼쪽에서 가장 큰 값 or 오른쪽에서 가장 작은 값
+
+            }
+        }
+
+        return true;
     }
 
     private class Node {
@@ -126,10 +134,6 @@ public class 이진트리 {
             this.left = new Node(value);
         }
 
-        public void removeLeft() {
-            this.left = null;
-        }
-
         public Optional<Node> right() {
             return Optional.ofNullable(right);
         }
@@ -138,12 +142,20 @@ public class 이진트리 {
             this.right = new Node(value);
         }
 
-        public void removeRight() {
-            this.right = null;
-        }
-
         public boolean isLeaf() {
             return left == null && right == null;
+        }
+
+        public boolean orphan(Integer value) {
+             if(left().isPresent() && left().get().compare(value) == 0) {
+                 this.left = null;
+                 return true;
+             } else if(right().isPresent() && right().get().compare(value) == 0) {
+                this.right = null;
+                 return true;
+             }
+
+             return false;
         }
 
         public Node nextNode() {
