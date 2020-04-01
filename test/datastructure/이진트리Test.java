@@ -52,9 +52,16 @@ public class 이진트리Test {
         assertThat(binaryTree.exist(17)).isEqualTo(-1);
         assertThat(binaryTree.exist(19)).isEqualTo(2);
 
+        binaryTree = factory();
+        binaryTree.delete(19); // 사전작업
+        binaryTree.delete(17); // 사전작업
+        assertThat(binaryTree.delete(15)).isTrue();
+        assertThat(binaryTree.exist(15)).isEqualTo(-1);
+        assertThat(binaryTree.exist(12)).isEqualTo(1);
+
         // 리프노드가 아니어도 삭제방식은 동일하다
         binaryTree = factory();
-        binaryTree.delete(12);
+        binaryTree.delete(12); // 사전작업
         assertThat(binaryTree.delete(15)).isTrue();
         assertThat(binaryTree.exist(15)).isEqualTo(-1);
         assertThat(binaryTree.exist(17)).isEqualTo(1);

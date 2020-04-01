@@ -65,21 +65,18 @@ public class 이진트리 {
     }
 
     public boolean delete(Integer value) {
-        Node parent = head;
         Node current = head;
 
         while(true) {
             if(current.compare(value) == 0) {
                 break;
             } else if(current.compare(value) == -1) {
-                parent = current;
                 Optional<Node> opt = current.left();
                 if(!opt.isPresent()) {
                     return false;
                 }
                 current = opt.get();
             } else if(current.compare(value) == 1) {
-                parent = current;
                 Optional<Node> opt = current.right();
                 if(!opt.isPresent()) {
                     return false;
@@ -89,21 +86,15 @@ public class 이진트리 {
         }
 
         if(current.isLeaf()) {
-            parent.orphan(value);
+            current.orphan();
         } else {
             Optional<Node> leftOpt = current.left();
             Optional<Node> rightOpt = current.right();
 
             if(leftOpt.isPresent() && !rightOpt.isPresent()) {
-                Node left = leftOpt.get();
-
-                parent.left = left;
-                current = left;
+                current.replace(leftOpt.get());
             } else if(!leftOpt.isPresent() && rightOpt.isPresent()) {
-                Node right = rightOpt.get();
-
-                parent.right = right;
-                current = right;
+                current.replace(rightOpt.get());
             } else {
                 // 왼쪽에서 가장 큰 값 or 오른쪽에서 가장 작은 값
 
@@ -118,6 +109,9 @@ public class 이진트리 {
         private Node left;
         private Node right;
 
+        private Node parent;
+        private Direction parentFrom;
+
         public Node(Integer value) {
             this.value = value;
         }
@@ -126,12 +120,23 @@ public class 이진트리 {
             return Integer.compare(value, this.value);
         }
 
+        // 모든 노드의 부모 세팅을 보장하지 못함
+        // 이 함수를 호출한 객체만 부모세팅을 보장함
+        // 애초에 left, right 넣을 떄 하면 되지 않는가?
+        public void initParent(Node node, Direction from) {
+            this.parent = node;
+            this.parentFrom = from;
+        }
+
         public Optional<Node> left() {
             return Optional.ofNullable(left);
         }
 
         public void initLeft(Integer value) {
-            this.left = new Node(value);
+            Node node = new Node(value);
+            node.parent = this;
+            node.parentFrom = Direction.LEFT;
+            this.left = node;
         }
 
         public Optional<Node> right() {
@@ -139,33 +144,39 @@ public class 이진트리 {
         }
 
         public void initRight(Integer value) {
-            this.right = new Node(value);
+            Node node = new Node(value);
+            node.parent = this;
+            node.parentFrom = Direction.RIGHT;
+            this.right = node;
         }
 
         public boolean isLeaf() {
             return left == null && right == null;
         }
 
-        public boolean orphan(Integer value) {
-             if(left().isPresent() && left().get().compare(value) == 0) {
-                 this.left = null;
-                 return true;
-             } else if(right().isPresent() && right().get().compare(value) == 0) {
-                this.right = null;
-                 return true;
-             }
-
-             return false;
-        }
-
-        public Node nextNode() {
-            if(left == null) {
-                return right;
-            } else if (right == null) {
-                return left;
+        public void orphan() {
+            if(this.parentFrom == Direction.LEFT) {
+                this.parent.left = null;
+            } else {
+                this.parent.right = null;
             }
 
-            return null;
+            this.parent = null;
+            this.parentFrom = null;
         }
+
+        public void replace(Node node) {
+            node.parent = null;
+            node.parentFrom = null;
+            if(this.parentFrom == Direction.LEFT) {
+                this.parent.left = node;
+            } else {
+                this.parent.right = node;
+            }
+        }
+    }
+
+    private enum Direction {
+        LEFT, RIGHT
     }
 }
