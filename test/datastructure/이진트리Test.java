@@ -68,6 +68,8 @@ public class 이진트리Test {
         assertThat(binaryTree.exist(19)).isEqualTo(2);
     }
 
+
+
     @Test
     public void 자식이_둘일_경우_() {
         이진트리 binaryTree = factory();

@@ -97,7 +97,14 @@ public class 이진트리 {
                 current.replace(rightOpt.get());
             } else {
                 // 왼쪽에서 가장 큰 값 or 오른쪽에서 가장 작은 값
+                Node left = leftOpt.get();
+                Node right = rightOpt.get();
 
+                Node node = current.rightNearestNode();
+                current.replace(node);
+
+                node.left = left;
+                node.right = right;
             }
         }
 
@@ -118,14 +125,6 @@ public class 이진트리 {
 
         public int compare(Integer value) {
             return Integer.compare(value, this.value);
-        }
-
-        // 모든 노드의 부모 세팅을 보장하지 못함
-        // 이 함수를 호출한 객체만 부모세팅을 보장함
-        // 애초에 left, right 넣을 떄 하면 되지 않는가?
-        public void initParent(Node node, Direction from) {
-            this.parent = node;
-            this.parentFrom = from;
         }
 
         public Optional<Node> left() {
@@ -166,13 +165,32 @@ public class 이진트리 {
         }
 
         public void replace(Node node) {
-            node.parent = null;
-            node.parentFrom = null;
+            if(node.parentFrom == Direction.LEFT) {
+                node.parent.left = null;
+            } else if(node.parentFrom == Direction.RIGHT) {
+                node.parent.right = null;
+            }
+
+            node.parent = this.parent;
+            node.parentFrom = this.parentFrom;
             if(this.parentFrom == Direction.LEFT) {
                 this.parent.left = node;
             } else {
                 this.parent.right = node;
             }
+        }
+
+        public Node rightNearestNode() {
+            if(!this.right().isPresent()) {
+                throw new IllegalStateException("this node doesn't have right node anymore");
+            }
+
+            Node current = this.right().get();
+            while (current.left().isPresent()) {
+                current = current.left().get();
+            }
+
+            return current;
         }
     }
 
