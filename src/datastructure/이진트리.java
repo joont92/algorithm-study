@@ -108,7 +108,9 @@ public class 이진트리 {
                 }
 
                 node.left = left;
-                node.right = right;
+                if(node != right) {
+                    node.right = right;
+                }
             }
         }
 

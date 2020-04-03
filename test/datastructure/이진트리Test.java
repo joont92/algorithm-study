@@ -81,6 +81,13 @@ public class 이진트리Test {
 
         // 가장 작은 자식에 오른쪽 자식이 있을 경우, 부모의 왼쪽 자식으로 대체한다
         assertThat(binaryTree.exist(7)).isEqualTo(3);
+
+        binaryTree = factory();
+        assertThat(binaryTree.delete(15)).isTrue();
+        assertThat(binaryTree.exist(15)).isEqualTo(-1);
+        assertThat(binaryTree.exist(17)).isEqualTo(1);
+        assertThat(binaryTree.exist(12)).isEqualTo(2);
+        assertThat(binaryTree.exist(19)).isEqualTo(2);
     }
 
     private 이진트리 factory() {
