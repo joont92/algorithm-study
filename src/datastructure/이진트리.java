@@ -96,12 +96,16 @@ public class 이진트리 {
             } else if(!leftOpt.isPresent() && rightOpt.isPresent()) {
                 current.replace(rightOpt.get());
             } else {
-                // 왼쪽에서 가장 큰 값 or 오른쪽에서 가장 작은 값
                 Node left = leftOpt.get();
                 Node right = rightOpt.get();
 
+                // 왼쪽에서 가장 큰 값 or 오른쪽에서 가장 작은 값 : 무엇을 선택하든 관계없다
                 Node node = current.rightNearestNode();
                 current.replace(node);
+
+                if(node.right().isPresent()) {
+                    right.left = node.right().get();
+                }
 
                 node.left = left;
                 node.right = right;

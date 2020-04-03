@@ -71,31 +71,36 @@ public class 이진트리Test {
 
 
     @Test
-    public void 자식이_둘일_경우_() {
+    public void 자식이_둘일_경우_가장_작은_자식을_위로_올린다() {
         이진트리 binaryTree = factory();
         assertThat(binaryTree.delete(5)).isTrue();
         assertThat(binaryTree.exist(5)).isEqualTo(-1);
         assertThat(binaryTree.exist(6)).isEqualTo(1);
-        assertThat(binaryTree.exist(7)).isEqualTo(2);
-        assertThat(binaryTree.exist(8)).isEqualTo(3);
+        assertThat(binaryTree.exist(8)).isEqualTo(2);
+        assertThat(binaryTree.exist(9)).isEqualTo(3);
+
+        // 가장 작은 자식에 오른쪽 자식이 있을 경우, 부모의 왼쪽 자식으로 대체한다
+        assertThat(binaryTree.exist(7)).isEqualTo(3);
     }
 
     private 이진트리 factory() {
         /*
-                  10
-             5         15
-           3   7    12    17
-          2 4 6 8           19
+                      10
+               5             15
+            3      8      12    17
+          2  4   6   9             19
+                  7
          */
         이진트리 binaryTree = new 이진트리(10);
         binaryTree.insert(5);
         binaryTree.insert(15);
         binaryTree.insert(3);
-        binaryTree.insert(7);
+        binaryTree.insert(8);
         binaryTree.insert(2);
         binaryTree.insert(4);
         binaryTree.insert(6);
-        binaryTree.insert(8);
+        binaryTree.insert(9);
+        binaryTree.insert(7);
         binaryTree.insert(12);
         binaryTree.insert(17);
         binaryTree.insert(19);
