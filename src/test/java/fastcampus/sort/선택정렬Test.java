@@ -5,17 +5,15 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-public class 버블정렬Test {
+public class 선택정렬Test {
     @Test
     public void 숫자를_정렬한다() {
-        List<Integer> result = 버블정렬.sort(4,3,6,11,2);
+        List<Integer> result = 선택정렬.sort(4,3,6,11,2);
         assertThat(result).isEqualTo(Arrays.asList(2,3,4,6,11));
     }
 
@@ -27,7 +25,7 @@ public class 버블정렬Test {
                 .boxed()
                 .collect(Collectors.toList());
 
-        List<Integer> result = 버블정렬.sort(randomNumbers.toArray(new Integer[0]));
+        List<Integer> result = 선택정렬.sort(randomNumbers.toArray(new Integer[0]));
         assertThat(result).isEqualTo(randomNumbers.stream().sorted().collect(Collectors.toList()));
     }
 }
