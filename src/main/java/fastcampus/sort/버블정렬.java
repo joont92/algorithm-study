@@ -5,8 +5,8 @@ import java.util.List;
 
 public class 버블정렬 {
     public static List<Integer> sort(Integer... numbers) {
-        for (int i = numbers.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
+        for (int i = 1; i < numbers.length; i++) {
+            for (int j = 0; j < numbers.length - i; j++) {
                 if (numbers[j] > numbers[j + 1]) {
                     int temp = numbers[j];
                     numbers[j] = numbers[j + 1];
