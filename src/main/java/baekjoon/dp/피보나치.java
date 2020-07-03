@@ -8,29 +8,29 @@ import java.util.function.Supplier;
  */
 public class 피보나치 {
     public static void main(String[] args) {
-        System.out.println(topDown(10) == 55);
-        timer(() -> topDown(10));
-        timer(() -> topDown(40));
-        timer(() -> topDownWithMemoization(5000));
+        System.out.println(topDownWithoutMemoization(10) == 55);
+        timer(() -> topDownWithoutMemoization(10));
+        timer(() -> topDownWithoutMemoization(40));
+        timer(() -> topDown(5000));
         timer(() -> bottomUp(5000));
     }
 
+    public static long topDownWithoutMemoization(int n) {
+        if(n <= 2) {
+            return 1;
+        }
+
+        return topDownWithoutMemoization(n - 1) + topDownWithoutMemoization(n - 2);
+    }
+
+    static long[] results = new long[10000];
     public static long topDown(int n) {
         if(n <= 2) {
             return 1;
         }
 
-        return topDown(n - 1) + topDown(n - 2);
-    }
-
-    static long[] results = new long[10000];
-    public static long topDownWithMemoization(int n) {
-        if(n <= 2) {
-            return 1;
-        }
-
         if(results[n] == 0) {
-            results[n] = topDownWithMemoization(n - 1) + topDownWithMemoization(n - 2);
+            results[n] = topDown(n - 1) + topDown(n - 2);
         }
         return results[n];
     }
