@@ -13,7 +13,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         runWithCnt2(br, (n) -> {
             카드_구매하기 fn = new 카드_구매하기(n);
-            System.out.println(fn.topDown(n.length));
+            System.out.println(fn.bottomUp(n.length));
         });
     }
 
