@@ -50,6 +50,14 @@ public class 카드_구매하기 {
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
+                /*
+                i 가 4라고 가정해보면
+                array[4] = array[3] + prices[1];
+                array[4] = array[2] + prices[2];
+                array[4] = array[1] + prices[3];
+                와 같은 순서로 계산된다
+                이 중 가장 큰 값을 구해야 하므로 Math.max 를 추가해야 한다
+                 */
                 array[i] = Math.max(array[i - j] + prices[j], array[i]);
             }
         }
@@ -61,6 +69,6 @@ public class 카드_구매하기 {
         ...
          */
 
-        return 0;
+        return array[n];
     }
 }

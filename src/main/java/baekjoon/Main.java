@@ -1,6 +1,7 @@
 package baekjoon;
 
 import baekjoon.dp.카드_구매하기;
+import baekjoon.dp.카드_구매하기2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
