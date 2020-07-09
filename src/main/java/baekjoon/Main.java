@@ -1,5 +1,7 @@
 package baekjoon;
 
+import baekjoon.dp._1_2_3_더하기5;
+import baekjoon.dp.쉬운_계단_수;
 import baekjoon.dp.카드_구매하기;
 import baekjoon.dp.카드_구매하기2;
 
@@ -12,10 +14,8 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        runWithCnt2(br, (n) -> {
-            카드_구매하기 fn = new 카드_구매하기(n);
-            System.out.println(fn.bottomUp(n.length));
-        });
+        쉬운_계단_수 fn = new 쉬운_계단_수();
+        run(br, (n) -> System.out.println(fn.bottomUp(n)));
     }
 
     private static void run(BufferedReader br, Consumer<Integer> consumer) throws IOException {
