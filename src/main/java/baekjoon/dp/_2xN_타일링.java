@@ -9,6 +9,7 @@ package baekjoon.dp;
  * - 즉, fn(n) = fn(n-1) + fn(n-2)
  */
 public class _2xN_타일링 {
+    int mod = 10007;
     private int[] array;
 
     public int topDown(int n) {
@@ -19,7 +20,7 @@ public class _2xN_타일링 {
         }
 
         if(array[n] == 0) {
-            array[n] = (topDown(n - 1) + topDown(n - 2)) % 10007;
+            array[n] = (topDown(n - 1) + topDown(n - 2)) % mod;
         }
 
         return array[n];
@@ -31,7 +32,7 @@ public class _2xN_타일링 {
         array[2] = 2;
 
         for (int i = 3; i <= n; i++) {
-            array[i] = (array[i - 1] + array[i - 2]) % 10007;
+            array[i] = (array[i - 1] + array[i - 2]) % mod;
         }
 
         return array[n];

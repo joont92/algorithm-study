@@ -1,9 +1,6 @@
 package baekjoon;
 
-import baekjoon.dp._1_2_3_더하기5;
-import baekjoon.dp.쉬운_계단_수;
-import baekjoon.dp.카드_구매하기;
-import baekjoon.dp.카드_구매하기2;
+import baekjoon.dp.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +11,7 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        쉬운_계단_수 fn = new 쉬운_계단_수();
+        이친수 fn = new 이친수();
         run(br, (n) -> System.out.println(fn.bottomUp(n)));
     }
 
