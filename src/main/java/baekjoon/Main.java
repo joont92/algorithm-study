@@ -2,6 +2,7 @@ package baekjoon;
 
 import baekjoon.dp.*;
 import baekjoon.math.나머지;
+import baekjoon.math.소수_구하기;
 import baekjoon.math.소수_찾기;
 import baekjoon.math.최대공약수와_최소공배수;
 
@@ -14,9 +15,9 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        소수_찾기 fn = new 소수_찾기();
-        runWithCnt2(br, (n) -> {
-            System.out.println(fn.count(n));
+        소수_구하기 fn = new 소수_구하기();
+        run2(br, (n) -> {
+            fn.getPrimeNumbers(n[0], n[1]).forEach(System.out::println);
         });
     }
 
