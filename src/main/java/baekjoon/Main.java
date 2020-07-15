@@ -1,10 +1,6 @@
 package baekjoon;
 
-import baekjoon.dp.*;
-import baekjoon.math.나머지;
-import baekjoon.math.소수_구하기;
-import baekjoon.math.소수_찾기;
-import baekjoon.math.최대공약수와_최소공배수;
+import baekjoon.math.골드바흐의_추측;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,10 +11,8 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        소수_구하기 fn = new 소수_구하기();
-        run2(br, (n) -> {
-            fn.getPrimeNumbers(n[0], n[1]).forEach(System.out::println);
-        });
+        골드바흐의_추측 fn = new 골드바흐의_추측();
+        runInfinitely(br, fn::sumOfPrimeNumber);
     }
 
     private static void run(BufferedReader br, Consumer<Integer> consumer) throws IOException {
@@ -31,6 +25,13 @@ public class Main {
         consumer.accept(Arrays.stream(str.split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray());
+    }
+
+    private static void runInfinitely(BufferedReader br, Consumer<Integer> consumer) throws IOException {
+        int n;
+        while((n = Integer.parseInt(br.readLine())) != 0) {
+            consumer.accept(n);
+        }
     }
 
     private static void runWithCnt(BufferedReader br, Consumer<Integer> consumer) throws IOException {

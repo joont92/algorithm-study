@@ -3,9 +3,9 @@ package baekjoon.math;
 /**
  * https://www.acmicpc.net/problem/1978
  *
- * - 1 ~ n-1 사이에 나누어 떨어지는 수가 있으면 소수가 아님
+ * - 2 ~ n-1 사이에 나누어 떨어지는 수가 있으면 소수가 아님
  *   - 2 ~ n/2 까지 나누어 떨어지는 수가 있으면 소수가 아님
- *   - n/2+1 ~ n-1 사이에는 약수가 있을 수 없음
+ *      - n/2+1 ~ n-1 사이에는 약수가 있을 수 없음
  *   - 이렇게 범위를 줄여도 결국 O(n) 이라, 속도 차이가 그렇게 크게 나지 않음
  *
  * - n = a * b
@@ -30,7 +30,7 @@ public class 소수_찾기 {
         }
 
         // 실수는 근사값이므로 사용하지 않는것이 좋다(a <= sqrt(number) -> a * a <= number)
-        for (int i = 2; i * i <= number; i++) {
+        for (int i = 2; i * i <= number; i++) { // 2 부터 시작해서 가장 작은 a 값을 구하는 과정
             if (number % i == 0) {
                 return false;
             }
