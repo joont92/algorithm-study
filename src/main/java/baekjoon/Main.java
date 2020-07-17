@@ -1,6 +1,6 @@
 package baekjoon;
 
-import baekjoon.math.골드바흐의_추측;
+import baekjoon.math.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        골드바흐의_추측 fn = new 골드바흐의_추측();
-        runInfinitely(br, fn::sumOfPrimeNumber);
+        조합_0의_개수 fn = new 조합_0의_개수();
+        run2(br, n -> System.out.println(fn.count(Integer.parseInt(n[0]), Integer.parseInt(n[1]))));
     }
 
     private static void run(BufferedReader br, Consumer<Integer> consumer) throws IOException {
@@ -20,11 +20,9 @@ public class Main {
         consumer.accept(n);
     }
 
-    private static void run2(BufferedReader br, Consumer<int[]> consumer) throws IOException {
+    private static void run2(BufferedReader br, Consumer<String[]> consumer) throws IOException {
         String str = br.readLine();
-        consumer.accept(Arrays.stream(str.split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray());
+        consumer.accept(str.split(" "));
     }
 
     private static void runInfinitely(BufferedReader br, Consumer<Integer> consumer) throws IOException {
