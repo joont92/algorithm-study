@@ -1,30 +1,25 @@
 package baekjoon;
 
-import baekjoon.math._2진수_8진수;
-import baekjoon.math.골드바흐_파티션;
-import baekjoon.math.골드바흐의_추측;
+import baekjoon.datastructure.요세푸스_문제;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        골드바흐_파티션 fn = new 골드바흐_파티션();
-        runWithCnt(br, s -> System.out.println(fn.countPrimeNumberPair(s)));
+        요세푸스_문제 fn = new 요세푸스_문제();
+        run(br, n ->
+                System.out.println("<" + fn.removedOrder(n[0], n[1]).stream().map(String::valueOf).collect(Collectors.joining(", ")) + ">"));
     }
 
-    private static void runWithCnt(BufferedReader br, Consumer<Integer> consumer) throws IOException {
-//        String[] str2 = br.readLine().split(" ", size);
-//        consumer.accept(standard, Arrays.stream(str2)
-//                .mapToInt(Integer::parseInt)
-//                .toArray());
-        int count = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i < count; i++) {
-            consumer.accept(Integer.parseInt(br.readLine()));
-        }
+    private static void run(BufferedReader br, Consumer<int[]> consumer) throws IOException {
+        consumer.accept(Arrays.stream(br.readLine().split(" ", 2))
+                .mapToInt(Integer::parseInt)
+                .toArray());
     }
 }
