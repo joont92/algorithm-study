@@ -32,6 +32,22 @@ public class _1_2_3_더하기 {
         return array[n];
     }
 
+    public int topDown2(int sum, int n) {
+        if(sum > n) {
+            return 0;
+        }
+        if(sum == n) {
+            return 1;
+        }
+
+        int count = 0;
+        for (int i = 1; i <= 3; i++) {
+            count += topDown2(sum + i, n);
+        }
+
+        return count;
+    }
+
     public int bottomUp(int n) {
         int[] array = new int[11];
         array[1] = 1;
