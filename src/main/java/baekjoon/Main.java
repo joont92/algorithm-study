@@ -1,26 +1,33 @@
 package baekjoon;
 
-import baekjoon.bruteforce.모든_순열;
-import baekjoon.graph.ABCDE;
+import baekjoon.graph.DFS와_BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] str = br.readLine().split(" ");
-        ABCDE fn = new ABCDE(Integer.parseInt(str[0]));
-        for (int i = 0; i < Integer.parseInt(str[1]); i++) {
+        String[] condition = br.readLine().split(" ");
+        DFS와_BFS fn = new DFS와_BFS(Integer.parseInt(condition[0]));
+
+        for (int i = 0; i < Integer.parseInt(condition[1]); i++) {
             String[] relation = br.readLine().split(" ");
             fn.add(Integer.parseInt(relation[0]), Integer.parseInt(relation[1]));
         }
-        System.out.println(fn.search() ? 1 : 0);
+        System.out.println(fn.dfsSearch(Integer.parseInt(condition[2])));
     }
 
-    private static void run(BufferedReader br, Consumer<Integer> consumer) throws IOException {
-        consumer.accept(Integer.parseInt(br.readLine()));
+    private static void run(BufferedReader br, int count, Consumer<Map<Integer, Integer>> consumer) throws IOException {
+        Map<Integer, Integer> relation = new HashMap<>();
+        for (int i = 0; i < count; i++) {
+            String[] args = br.readLine().split(" ");
+            relation.put(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        }
+        consumer.accept(relation);
     }
 }

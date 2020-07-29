@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * https://www.acmicpc.net/problem/13023
+ *
+ * 간선을 탈 떄 마다 depth 를 1씩 증가시키고, depth 가 4가 되면 전체 결과를 true 로 세팅한다
+ * 이 행위를 모든 정점에 대해서 수행한다
  */
 public class ABCDE {
     private List<List<Integer>> graph;
@@ -51,4 +54,5 @@ public class ABCDE {
         }
         check[v] = false;
     }
+
 }
