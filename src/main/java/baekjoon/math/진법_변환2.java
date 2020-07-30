@@ -7,14 +7,14 @@ package baekjoon.math;
  */
 public class 진법_변환2 {
     public String convert(int n, int system) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        while (n != 0) {
+        while(n > 0) {
             int mod = n % system;
-            result.append((char)(mod >= 10 ? mod + 55 : mod + 48));
-            n = n / system;
+            sb.append((char)(mod >= 10 ? mod - 10 + 'A' : mod + '0'));
+            n /= system;
         }
 
-        return result.reverse().toString();
+        return sb.reverse().toString();
     }
 }

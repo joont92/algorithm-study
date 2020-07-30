@@ -5,6 +5,9 @@ package baekjoon.math;
  *
  * 전달하는 2진수의 범위가 너무 크기 떄문에, 자료형에 데이터를 저장할 수 없다
  * 2진수 3글자 == 8진수 1글자 공식을 이용해야 한다
+ *
+ * 3글자씩 잘리지 않을때에 대한 처리가 필요하다
+ * e.g. 01 111 101 111
  */
 public class _2진수_8진수 {
     public String toOctal(String binary) {

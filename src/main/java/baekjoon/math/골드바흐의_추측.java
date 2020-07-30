@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * https://www.acmicpc.net/problem/6588
  *
+ * 골드바흐의 추측 : 4보다 큰 짝수는 두 홀수 소수의 합으로 나타낼 수 있다
+ *
  * 100만 이하의 소수를 모두 구함
  * 짝수에 대해 brute forcing?
  * b-a 가 가장 큰 값이라는 말은 결국 속임수. 가장 먼저 찾는 값이 b-a 가 가장 큼.
