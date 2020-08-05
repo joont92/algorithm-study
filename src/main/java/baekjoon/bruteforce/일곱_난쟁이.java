@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 /**
  * https://www.acmicpc.net/problem/2309
  *
- * 9명중 7명을 구하기보단, 9명중 2명을 빼는 방법을 사용한다
- * 2명을 구해야하므로 2중 루프가 필요하다
+ * 9명 중 2명을 뽑아 키를 더한 뒤, 전체 난쟁이의 키에서 뺐을 떄 100이면 출력한다
+ * 재귀를 사용하지 않고 2가지 경우의 수를 출력하므로, 2중 루프가 필요하다
  */
 public class 일곱_난쟁이 {
     public List<Integer> bottomUp(int... heights) {
@@ -18,7 +18,7 @@ public class 일곱_난쟁이 {
         int sum = Arrays.stream(heights).sum();
 
         for (int i = 0; i < heights.length; i++) {
-            for (int j = i + 1; j < heights.length; j++) {
+            for (int j = i + 1; j < heights.length && i != j; j++) {
                 if(sum - heights[i] - heights[j] == 100) {
                     for (int k = 0; k < heights.length; k++) {
                         if(k != i && k != j) {
@@ -30,6 +30,6 @@ public class 일곱_난쟁이 {
             }
         }
 
-        throw new IllegalArgumentException("there is no change to find correct");
+        throw new IllegalArgumentException("there is no chance to find correct");
     }
 }

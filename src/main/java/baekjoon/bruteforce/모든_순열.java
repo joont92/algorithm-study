@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 /**
  * https://www.acmicpc.net/problem/10974
+ *
+ * N과M 문제와 동일함
  */
 public class 모든_순열 {
     int[] arr = new int[8];

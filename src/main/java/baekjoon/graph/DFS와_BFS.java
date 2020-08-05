@@ -1,17 +1,12 @@
 package baekjoon.graph;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
  * https://www.acmicpc.net/problem/1260
  */
 public class DFS와_BFS {
-    private Set<Integer> hasEdge = new HashSet<>();
-    private Stack<Integer> tracking = new Stack<>();
-    private boolean result;
-
     private List<List<Integer>> graph = new ArrayList<>();
     private boolean[] check;
 
@@ -25,42 +20,47 @@ public class DFS와_BFS {
         graph.get(you - 1).add(me);
         Collections.sort(graph.get(me - 1));
         Collections.sort(graph.get(you - 1));
-
-        hasEdge.add(me);
-        hasEdge.add(you);
     }
 
-    public String dfsSearch(int start) {
-        dfs(start, 0);
-
-        if(result) {
-            return tracking.stream().map(String::valueOf).collect(Collectors.joining(" "));
-        }
-
-        return "";
+    public void dfsSearch(int start) {
+        Arrays.fill(check, false);
+        dfs(start);
     }
 
-    public void dfs(int vertex, int depth) {
-        if(depth == hasEdge.size() - 1) {
-            result = true;
-        }
+    private void dfs(int vertex) {
+        check[vertex] = true;
+        System.out.print(vertex + " ");
 
         List<Integer> element = graph.get(vertex - 1);
-
-        tracking.push(vertex);
-        check[vertex] = true;
         for (Integer e : element) {
             if(!check[e]) {
-                dfs(e, depth + 1);
+                dfs(e);
             }
+        }
+    }
 
-            if(result) {
-                break;
+    public void bfsSearch(int start) {
+        Arrays.fill(check, false);
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        check[start] = true;
+
+        bfs(queue);
+    }
+
+    private void bfs(Queue<Integer> queue) {
+        while(!queue.isEmpty()) {
+            int vertex = queue.poll();
+            System.out.print(vertex + " ");
+
+            List<Integer> element = graph.get(vertex - 1);
+            for (Integer e : element) {
+                if(!check[e]) {
+                    check[e] = true;
+                    queue.add(e);
+                }
             }
         }
-        if(!result) {
-            tracking.pop();
-        }
-        check[vertex] = false;
     }
 }

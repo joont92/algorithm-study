@@ -8,11 +8,12 @@ import java.util.stream.IntStream;
  * - `1,2,3 더하기 5` 와 비슷한 방식으로 풀면 된다
  * - fn[n][i] = 마지막에 오는 숫자가 i 일 때, 앞에 계단 숫자가 올 수 있는 경우의 수
  *   > 마지막에 오는 숫자는 0~9 가 되므로
- *   > result = fn[n][0] + fn[n][1] + fn[n][2] + fn[n][3] + fn[n][4] + fn[n][5]
- *              + fn[n][6] + fn[n][7] + fn[n][8] + fn[n][9]
- *   
+ *   > result = fn[n][0] + fn[n][1] + fn[n][2] + fn[n][3] + fn[n][4] +
+ *              fn[n][5] + fn[n][6] + fn[n][7] + fn[n][8] + fn[n][9]
+ *
  * - 계단식은 +1, -1 이 가능하므로
  *   > fn[n][i] = fn[n-1][i-1] + fn[n-1][i+1]
+ *   > 1글자가 줄어들기 떄문에 n-1 이다
  */
 public class 쉬운_계단_수 {
     public long bottomUp(int n) {

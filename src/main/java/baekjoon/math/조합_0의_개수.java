@@ -15,6 +15,7 @@ package baekjoon.math;
  * - nCr * rPr = nPr
  * - nCr = nPr / rPr
  * - nCr = n! / r! * (n-r)!
+ *       = n * (n-1) ... (n-r) / r!
  *
  * - n! 의 0의 개수 - r! 의 0의 개수 - (n-r)! 의 0의 개수
  *   - 분수로 나타내서 위아래로 0을 삭제하는 과정을 생각하면 된다

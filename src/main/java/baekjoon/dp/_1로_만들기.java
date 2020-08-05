@@ -42,7 +42,7 @@ public class _1로_만들기{
 
     public int bottomUp(int n) {
         int[] results = new int[n + 1];
-        results[1] = 0;
+        results[1] = 0; // 1일 경우 연산 필요없음
 
         for (int i = 2; i <= n; i++) {
             results[i] = 1 + results[i - 1];

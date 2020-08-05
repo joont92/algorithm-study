@@ -19,7 +19,9 @@ public class Main {
             String[] relation = br.readLine().split(" ");
             fn.add(Integer.parseInt(relation[0]), Integer.parseInt(relation[1]));
         }
-        System.out.println(fn.dfsSearch(Integer.parseInt(condition[2])));
+        fn.dfsSearch(Integer.parseInt(condition[2]));
+        System.out.println();
+        fn.bfsSearch(Integer.parseInt(condition[2]));
     }
 
     private static void run(BufferedReader br, int count, Consumer<Map<Integer, Integer>> consumer) throws IOException {
