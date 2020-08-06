@@ -1,5 +1,6 @@
 package baekjoon;
 
+import baekjoon.datastructure.최대_힙;
 import baekjoon.tree.트리_순회;
 
 import java.io.BufferedReader;
@@ -10,18 +11,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        최대_힙 fn = new 최대_힙();
         int count = Integer.parseInt(br.readLine());
-        트리_순회 fn = new 트리_순회(count);
         for (int i = 0; i < count; i++) {
-            String[] strs = br.readLine().split(" ");
-            fn.add(strs[0].charAt(0), strs[1].charAt(0), strs[2].charAt(0));
+            int num = Integer.parseInt(br.readLine());
+            if(num == 0) {
+                System.out.println(fn.remove());
+            } else {
+                fn.add(num);
+            }
         }
-
-        fn.preOrder('A');
-        System.out.println();
-        fn.inOrder('A');
-        System.out.println();
-        fn.postOrder('A');
 
 //        String[] condition = br.readLine().split(" ");
 //        DFS와_BFS fn = new DFS와_BFS(Integer.parseInt(condition[0]));
