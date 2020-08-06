@@ -1,26 +1,21 @@
 package baekjoon;
 
-import baekjoon.datastructure.최대_힙;
-import baekjoon.tree.트리_순회;
+import baekjoon.dp.연속_합;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        최대_힙 fn = new 최대_힙();
+        연속_합 fn = new 연속_합();
         int count = Integer.parseInt(br.readLine());
-        for (int i = 0; i < count; i++) {
-            int num = Integer.parseInt(br.readLine());
-            if(num == 0) {
-                System.out.println(fn.remove());
-            } else {
-                fn.add(num);
-            }
-        }
+        System.out.println(fn.maxStreamSum(Arrays.stream(br.readLine().split(" ", count))
+                .mapToInt(Integer::parseInt)
+                .toArray()));
 
 //        String[] condition = br.readLine().split(" ");
 //        DFS와_BFS fn = new DFS와_BFS(Integer.parseInt(condition[0]));
