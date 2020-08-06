@@ -17,7 +17,7 @@ import java.util.List;
  * - 데이터를 삭제할 때는 중간 노드의 값을 빼올일은 없고, 부모 노드의 값만 뺴온다
  *   - 그리고 루트 노드의 값을 채우기 위해 아래의 행동을 수행한다
  *     1. 가장 마지막으로 넣은 노드를 찾아서 루트 노드로 올린다
- *     2. 자식 노드의 값들 중 더 큰 값이 있다면 swap 한다
+ *     2. 자식 노드의 값들 중 더 큰 값이 있다면 swap 한다(양쪽 다 비교해야함)
  *     3. 자식 노드의 값들 중 더 큰 값이 없을떄 까지 반복한다(힙의 형태를 맞춤)
  * - 데이터 조회 + 삽입을 합쳐서 O(logN) 이 걸린다
  *
@@ -55,22 +55,39 @@ public class 최대_힙 {
         }
 
         int result = heap.remove(1);
-
         if(heap.size() == 1) {
             return result;
         }
 
         heap.add(1, heap.remove(heap.size() - 1));
 
-        int startIdx = 1;
-        while (startIdx * 2 <= heap.size() - 1 || startIdx * 2 + 1 <= heap.size() - 1) {
-            if (heap.get(startIdx) < heap.get(startIdx * 2)) {
-                swap(startIdx, startIdx * 2);
-                startIdx *= 2;
-            } else if (heap.get(startIdx) < heap.get(startIdx * 2 + 1)) {
-                swap(startIdx, startIdx * 2 + 1);
-                startIdx = startIdx * 2 + 1;
+        for (int i = 1; i * 2 < heap.size();) {
+            int k;
+            int standard = heap.get(i);
+            int left = heap.get(i * 2);
+
+            if(i * 2 + 1 >= heap.size()) {
+                if(standard > left) {
+                    break;
+                }
+
+                k = i * 2;
+            } else {
+                int right = heap.get(i * 2 + 1);
+
+                if(standard > left && standard > right) {
+                    break;
+                }
+
+                if(left > right) {
+                    k = i * 2;
+                } else {
+                    k = i * 2 + 1;
+                }
             }
+
+            swap(i, k);
+            i = k;
         }
 
         return result;
