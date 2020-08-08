@@ -1,5 +1,10 @@
 package baekjoon.dp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
 /**
  * https://www.acmicpc.net/problem/11052
  *
@@ -11,18 +16,48 @@ package baekjoon.dp;
  *   - 2개짜리 카드덱을 구매했을 때 가격 + 카드 2개를 구하기 위해 구매한 카드덱 가격의 최대 값
  *   - 1개짜리 카드덱을 구매했을 때 가격 + 카드 3개를 구하기 위해 구매한 카드덱 가격의 최대 값
  * - 즉, 위의 결과에서 최대값을 구하면 된다
- *   - max(fn(n-i) + p[i]))
+ *   - max(fn(n-i) + pricesZ[i]))
  *
  * - 시간 복잡도는 O(n^2) 가 된다
  *   - n을 받으면 1~n 까지 반복(O(n))을 돌고, 이것을 n 이 0이 될떄까지(O(n)) 하니 O(n^2) 이다
  */
 public class 카드_구매하기 {
-    private int[] prices;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public 카드_구매하기(int... n) {
-        prices = new int[n.length + 1];
-        System.arraycopy(n, 0, prices, 1, n.length);
+        int n = Integer.parseInt(br.readLine());
+        카드_구매하기 fn = new 카드_구매하기(Arrays.stream(br.readLine().split(" ", n))
+                .mapToInt(Integer::parseInt)
+                .toArray());
+        System.out.println(fn.bottomUp(n));
     }
+
+    int[] prices;
+    public 카드_구매하기(int[] args) {
+        this.prices = new int[args.length + 1];
+        System.arraycopy(args, 0, this.prices, 1, args.length);
+    }
+
+    /*
+    array[1] = 카드 1개 구매할 때 최대 비용
+    array[2] = 카드 2개 구매할 때 최대 비용
+    array[3] = 카드 3개 구매할 때 최대 비용
+    ...
+     */
+    public int bottomUp(int n) {
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            dp[i] = prices[i];
+
+            for (int j = 1; j < i; j++) {
+                dp[i] = Math.max(dp[i], prices[j] + dp[i - j]);
+            }
+        }
+
+        return dp[n];
+    }
+
 
     // 매 함수마다 배열이 따로 생성되고
     public int topDown(int n) {
@@ -42,33 +77,5 @@ public class 카드_구매하기 {
         }
 
         return max;
-    }
-
-    // 반복이 진행될 떄 마다 배열을 덮어씀
-    public int bottomUp(int n) {
-        int[] array = new int[n + 1];
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= i; j++) {
-                /*
-                i 가 4라고 가정해보면
-                array[4] = array[3] + prices[1];
-                array[4] = array[2] + prices[2];
-                array[4] = array[1] + prices[3];
-                와 같은 순서로 계산된다
-                이 중 가장 큰 값을 구해야 하므로 Math.max 를 추가해야 한다
-                 */
-                array[i] = Math.max(array[i - j] + prices[j], array[i]);
-            }
-        }
-
-        /*
-        array[1] = 카드 1개 구매할 때 최대 비용
-        array[2] = 카드 2개 구매할 때 최대 비용
-        array[3] = 카드 3개 구매할 때 최대 비용
-        ...
-         */
-
-        return array[n];
     }
 }

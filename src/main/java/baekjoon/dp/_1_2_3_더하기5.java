@@ -1,5 +1,9 @@
 package baekjoon.dp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * https://www.acmicpc.net/problem/15990
  *
@@ -18,7 +22,6 @@ package baekjoon.dp;
  * D[n][2] = D[n-2][1] + D[n-2][3]
  * D[n][3] = D[n-3][1] + D[n-3][2]
  *
- *
  * n 이 10이라고 가정하면,
  * 1. 마지막에 1이 올 수 있는 경우의 수
  * D[10][1] = D[9][2] + D[9][3] // 9에 대해 마지막에 2가 올 수 있는 경우의 수 + 마지막에 3이 올 수 있는 경우의 수
@@ -33,26 +36,35 @@ package baekjoon.dp;
  * D[10][3] = ...
  */
 public class _1_2_3_더하기5 {
-    int mod = 1_000_000_009;
-    long[][] array;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        _1_2_3_더하기5 fn = new _1_2_3_더하기5();
 
-    public _1_2_3_더하기5() {
-        array = new long[100001][4];
+        int cnt = Integer.parseInt(br.readLine());
 
-        array[1][1] = 1;
-        array[2][2] = 1;
-        array[3][1] = 1;
-        array[3][2] = 1;
-        array[3][3] = 1;
-
-        for (int i = 4; i <= 100000; i++) {
-            array[i][1] = (array[i - 1][2] + array[i - 1][3]) % mod;
-            array[i][2] = (array[i - 2][1] + array[i - 2][3]) % mod;
-            array[i][3] = (array[i - 3][1] + array[i - 3][2]) % mod;
+        for (int i = 0; i < cnt; i++) {
+            int n = Integer.parseInt(br.readLine());
+            System.out.println(fn.bottomUp(n));
         }
     }
 
-    public long bottomUp(int n) {
-        return (array[n][1] + array[n][2] + array[n][3]) % mod;
+    private int mod = 1_000_000_009;
+
+    public int bottomUp(int n) {
+        int[][] dp = new int[100_001][4];
+
+        dp[1][1] = 1;
+        dp[2][1] = 0;
+        dp[2][2] = 1;
+        dp[3][1] = 1;
+        dp[3][2] = 1;
+        dp[3][3] = 1;
+        for (int i = 4; i <= n; i++) {
+            dp[i][1] = (dp[i - 1][2] + dp[i - 1][3]) % mod;
+            dp[i][2] = (dp[i - 2][1] + dp[i - 2][3]) % mod;
+            dp[i][3] = (dp[i - 3][1] + dp[i - 3][2]) % mod;
+        }
+
+        return (dp[n][1] + dp[n][2] + dp[n][3]) % mod;
     }
 }

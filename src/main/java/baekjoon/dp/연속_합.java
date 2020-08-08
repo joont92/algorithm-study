@@ -1,5 +1,10 @@
 package baekjoon.dp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
 /**
  * https://www.acmicpc.net/problem/1912
  *
@@ -21,17 +26,27 @@ package baekjoon.dp;
  * - `자기 자신, 자기 자신 + 앞의 연속합` 중 큰 값을 선택한다
  *   - **자기 자신이 선택될 수도 있기 때문에 이어져 온 연속합은 항상 최대값이다**
  *   - 자기 자신이 더 크면 지금까지의 연속합을 끊고 진행하기 때문이다
+ * - 0부터 시작해서 배열에 연속합 최대값을 담으면서 bottomUp 한다
  */
 public class 연속_합 {
-    public int maxStreamSum(int[] args) {
-        int[] dp = new int[args.length];
-        int max = dp[0] = args[0];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int i = 1; i < args.length; i++) {
-            dp[i] = Math.max(args[i], args[i] + dp[i - 1]);
-            max = Math.max(max, dp[i]);
+        연속_합 fn = new 연속_합();
+        int count = Integer.parseInt(br.readLine());
+        System.out.println(fn.maxStreamSum(Arrays.stream(br.readLine().split(" ", count))
+                .mapToInt(Integer::parseInt)
+                .toArray()));
+    }
+
+    public int maxStreamSum(int... stream) {
+        int[] dp = new int[stream.length];
+
+        dp[0] = stream[0];
+        for (int i = 1; i < stream.length; i++) {
+            dp[i] = Math.max(stream[i], dp[i - 1] + stream[i]);
         }
 
-        return max;
+        return Arrays.stream(dp).max().getAsInt();
     }
 }
