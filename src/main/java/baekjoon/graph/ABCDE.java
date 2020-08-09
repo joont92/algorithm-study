@@ -1,5 +1,8 @@
 package baekjoon.graph;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,17 @@ import java.util.List;
  * 이 행위를 모든 정점에 대해서 수행한다
  */
 public class ABCDE {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        ABCDE fn = new ABCDE(Integer.parseInt(str[0]));
+        for (int i = 0; i < Integer.parseInt(str[1]); i++) {
+            String[] relation = br.readLine().split(" ");
+            fn.add(Integer.parseInt(relation[0]), Integer.parseInt(relation[1]));
+        }
+        System.out.println(fn.search() ? 1 : 0);
+    }
+
     private List<List<Integer>> graph;
     private boolean[] check;
     private boolean result;
