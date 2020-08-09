@@ -12,18 +12,20 @@ import java.util.stream.Collectors;
  */
 public class 가장_큰_수 {
     public static void main(String[] args) {
-        int[] array = {3, 30, 34, 5, 9};
+        int[] array = {0,0,0,0};
 
         가장_큰_수 fn = new 가장_큰_수();
         System.out.println(fn.solution(array));
     }
 
     public String solution(int[] numbers) {
-        return Arrays.stream(numbers)
+        String answer = Arrays.stream(numbers)
                 .mapToObj(IntegerCharacter::new)
                 .sorted()
                 .map(i -> i.number)
                 .collect(Collectors.joining());
+
+        return answer.charAt(0) == '0' ? "0" : answer;
     }
 
     class IntegerCharacter implements Comparable<IntegerCharacter> {

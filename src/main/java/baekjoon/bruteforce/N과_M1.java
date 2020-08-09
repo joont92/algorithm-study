@@ -1,10 +1,15 @@
 package baekjoon.bruteforce;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
  * https://www.acmicpc.net/problem/15649
+ *
+ * 순열을 구하는 문제이다(nPr)
  *
  * arr 배열은 하나의 출력마다 사용됨
  * index 0 : 1을 index 1에 기록하고, 사용중 체크하고 넘어감
@@ -14,12 +19,21 @@ import java.util.stream.Collectors;
  * array 배열은 다음 출력을 위해 또 사용됨
  */
 public class N과_M1 {
-    private int[] arr = new int[8];
-    private boolean[] check = new boolean[8 + 1];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N과_M1 fn = new N과_M1();
+        int[] param = Arrays.stream(br.readLine().split(" ", 2))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        fn.cases(0, param[0], param[1]);
+    }
 
-    public void cases(int index, int n, int m) {
-        if(index == m) {
-            System.out.println(Arrays.stream(arr)
+    int[] print = new int[9];
+    boolean[] check = new boolean[9];
+
+    public void cases(int idx, int n, int m) {
+        if(idx == m) {
+            System.out.println(Arrays.stream(print)
                     .filter(i -> i > 0)
                     .mapToObj(String::valueOf)
                     .collect(Collectors.joining(" ")));
@@ -30,9 +44,10 @@ public class N과_M1 {
             if(check[i]) {
                 continue;
             }
-            arr[index] = i;
+
+            print[idx] = i;
             check[i] = true;
-            cases(index + 1, n, m);
+            cases(idx + 1, n, m);
             check[i] = false;
         }
     }
