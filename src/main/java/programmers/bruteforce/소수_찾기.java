@@ -5,6 +5,9 @@ import java.util.Set;
 
 /**
  * https://programmers.co.kr/learn/courses/30/lessons/42839
+ *
+ * 순열에서 r 을 계속 증가시키면서 구하면, 숫자로 나타낼 수 있는 모든 경우의 수를 구할 수 있다
+ * 순열을 뽑을 떄 사용하던 재귀함수를 사용하였다
  */
 public class 소수_찾기 {
     public static void main(String[] args) {
