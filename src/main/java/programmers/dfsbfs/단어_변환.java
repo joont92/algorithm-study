@@ -2,6 +2,10 @@ package programmers.dfsbfs;
 
 /**
  * https://programmers.co.kr/learn/courses/30/lessons/43163
+ *
+ * dfs 사용하면 됨
+ * 탐색하다가 원하는 단어를 만났을 경우, 전체 문자열의 길이에서 아직까지 사용하지 않은 문자열의 길이를 뺸 값이 단어를 찾는데 사용한 횟수임
+ * 이 값들의 최소값을 구하면 됨
  */
 public class 단어_변환 {
     public static void main(String[] args) {
