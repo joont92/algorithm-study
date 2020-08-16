@@ -1,5 +1,8 @@
 package codility;
 
+/**
+ * https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
+ */
 public class _01_BinaryGap {
     public static void main(String[] args) {
         _01_BinaryGap fn = new _01_BinaryGap();
