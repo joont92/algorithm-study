@@ -1,4 +1,4 @@
-package codility;
+package codility.countingelements;
 
 import java.util.Arrays;
 
@@ -12,10 +12,10 @@ import java.util.Arrays;
  *
  * 복잡..
  */
-public class _04_MaxCounters {
+public class MaxCounters {
     public static void main(String[] args) {
         int[] A = {3, 4, 4, 6, 1, 4, 4};
-        _04_MaxCounters fn = new _04_MaxCounters();
+        MaxCounters fn = new MaxCounters();
         Arrays.stream(fn.solution(5, A)).forEach(System.out::println);
     }
 

@@ -1,4 +1,4 @@
-package codility;
+package codility.timecomplexity;
 
 /**
  * https://app.codility.com/programmers/lessons/3-time_complexity/tape_equilibrium/
@@ -6,11 +6,11 @@ package codility;
  * 첫번쨰 part에 대해서 왼쪽 합, 오른쪽 합을 먼저 구하고
  * 그 다음 part 부터는 왼쪽의 합 + part, 오른쪽 합 - part 로 진행하면 된다
  */
-public class _03_TapeEquilibrium {
+public class TapeEquilibrium {
     public static void main(String[] args) {
         int[] A = {3, 1};
 
-        _03_TapeEquilibrium fn = new _03_TapeEquilibrium();
+        TapeEquilibrium fn = new TapeEquilibrium();
         System.out.println(fn.solution(A));
     }
 

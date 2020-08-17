@@ -1,8 +1,6 @@
-package codility;
+package codility.arrays;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/
@@ -15,10 +13,10 @@ import java.util.Map;
  * - 인덱스는 2개씩 증가시킨다
  * - 마지막 1개까지 반환되는 값을 찾지 못헀다면, 마지막 값을 반환한다
  */
-public class _02_OddOccurrencesInArray {
+public class OddOccurrencesInArray {
     public static void main(String[] args) {
         int[] A = {9, 3, 9, 3, 9, 7, 9};
-        _02_OddOccurrencesInArray fn = new _02_OddOccurrencesInArray();
+        OddOccurrencesInArray fn = new OddOccurrencesInArray();
         System.out.println(fn.solution(A));
     }
 

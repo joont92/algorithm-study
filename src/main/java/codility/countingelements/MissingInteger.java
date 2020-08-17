@@ -1,4 +1,4 @@
-package codility;
+package codility.countingelements;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,11 +13,11 @@ import java.util.Set;
  * 2번도 stream을 쓰니까 시간이 조금 초과되었다
  * stream이 조금 느리구나..
  */
-public class _04_MissingInteger {
+public class MissingInteger {
     public static void main(String[] args) {
         int[] A = {-1, -3};
 
-        _04_MissingInteger fn = new _04_MissingInteger();
+        MissingInteger fn = new MissingInteger();
         System.out.println(fn.solution(A));
     }
 

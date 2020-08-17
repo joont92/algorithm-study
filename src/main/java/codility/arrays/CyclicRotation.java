@@ -1,14 +1,14 @@
-package codility;
+package codility.arrays;
 
 import java.util.Arrays;
 
 /**
  * https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
  */
-public class _02_CyclicRotation {
+public class CyclicRotation {
     public static void main(String[] args) {
         int[] A = {3, 8, 9, 7, 6};
-        _02_CyclicRotation fn = new _02_CyclicRotation();
+        CyclicRotation fn = new CyclicRotation();
         Arrays.stream(fn.solution(A, 3)).forEach(System.out::println);
     }
 

@@ -1,11 +1,11 @@
-package codility;
+package codility.iterations;
 
 /**
  * https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
  */
-public class _01_BinaryGap {
+public class BinaryGap {
     public static void main(String[] args) {
-        _01_BinaryGap fn = new _01_BinaryGap();
+        BinaryGap fn = new BinaryGap();
         System.out.println(fn.solution(32));
     }
     

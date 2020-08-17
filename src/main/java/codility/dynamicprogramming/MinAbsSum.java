@@ -1,6 +1,6 @@
-package codility;
+package codility.dynamicprogramming;
 
-public class _17_MinAbsSum {
+public class MinAbsSum {
     public int soultion(int[] array) {
         if(array.length == 0) {
             return 0;

@@ -1,11 +1,11 @@
-package codility;
+package codility.timecomplexity;
 
 /**
  * https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/
  */
-public class _03_FrogJmp {
+public class FrogJmp {
     public static void main(String[] args) {
-        _03_FrogJmp fn = new _03_FrogJmp();
+        FrogJmp fn = new FrogJmp();
         System.out.println(fn.solution(10, 85, 30));
     }
 

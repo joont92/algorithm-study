@@ -1,4 +1,4 @@
-package codility;
+package codility.timecomplexity;
 
 import java.util.Arrays;
 
@@ -7,10 +7,10 @@ import java.util.Arrays;
  *
  * 마지막 숫자가 전달되지 않는 경우 주의!
  */
-public class _03_PermMissingElem {
+public class PermMissingElem {
     public static void main(String[] args) {
         int[] A = {1, 3, 5, 6, 4, 2};
-        _03_PermMissingElem fn = new _03_PermMissingElem();
+        PermMissingElem fn = new PermMissingElem();
         System.out.println(fn.solution(A));
     }
 
