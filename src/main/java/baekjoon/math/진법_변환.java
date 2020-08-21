@@ -8,11 +8,11 @@ package baekjoon.math;
  */
 public class 진법_변환 {
     public int convert(String n, int system) {
-        int pow = n.length();
+        int pow = n.length() - 1;
 
         int sum = 0;
         for (char ch : n.toCharArray()) {
-            sum += Math.pow(system, --pow) * (ch >= 'A' ? ch - 55 : ch - 48);
+            sum += Math.pow(system, pow--) * (ch >= 'A' ? ch - 'A' + 10 : ch - '0');
         }
 
         return sum;
