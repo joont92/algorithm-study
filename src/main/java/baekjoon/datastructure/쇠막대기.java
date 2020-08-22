@@ -5,6 +5,9 @@ import java.util.Stack;
 
 /**
  * https://www.acmicpc.net/problem/10799
+ *
+ * ( 를 만나면 스택에 push, 짝이 맞는 )를 만나면 스택에서 pop
+ * ()를 만나면 스택에 있는 개수만큼 ++
  */
 public class 쇠막대기 {
     public static void main(String[] args) {

@@ -12,7 +12,7 @@ public class 단어_변환 {
         String[] words = {"hot","dot","dog","lot","log","cog"};
 
         단어_변환 fn = new 단어_변환();
-        System.out.println(fn.solution("hit", "cog", words));
+        System.out.println(fn.solution("hit", "log", words));
     }
 
     int min;
@@ -46,6 +46,25 @@ public class 단어_변환 {
             }
         }
     }
+
+    // 위처럼 boolean 개수를 세지않고 depth 를 전달하는 방법도 있음
+//    public void dfs(String str, int depth, String target, String[] words) {
+//        if(str.equals(target)) {
+//            min = Math.min(min, depth);
+//        }
+//
+//        for (int i = 0; i < words.length; i++) {
+//            if(check[i]) {
+//                continue;
+//            }
+//
+//            if(notEqualsCount(str, words[i]) == 1) {
+//                check[i] = true;
+//                dfs(words[i], depth + 1, target, words);
+//                check[i] = false;
+//            }
+//        }
+//    }
 
     private int stringDiffCount(String a, String b) {
         int count = 0;

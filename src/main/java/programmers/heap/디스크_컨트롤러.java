@@ -41,10 +41,11 @@ public class 디스크_컨트롤러 {
 
             if(queue.isEmpty()) {
                 // 다음 요청의 시작 시간으로
+                // 여기서 바꾸고 다음 반복문에서 jobQueue에 들어간다
                 end = jobs[jobsIdx][0];
             } else {
                 int[] job = queue.poll();
-                // 지금까지 지나온 시간 + job의 수행시간 - job의 시작시간 == job의 전체 시간
+                // 지금까지 지나온 시간 + job의 수행시간 - job의 시작시간 == job의 대기시간 + 수행시간
                 answer += (end + job[1] - job[0]);
                 // 현재 job이 끝나는 시간
                 end += job[1];

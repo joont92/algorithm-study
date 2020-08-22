@@ -22,13 +22,10 @@ public class 타겟_넘버 {
 
     private int dfs(int idx, int sum, int[] numbers, int target) {
         if(idx == numbers.length) {
-            if(sum == target) {
-                return 1;
-            }
-            return 0;
+            return sum == target ? 1 : 0;
         }
 
-        return dfs(idx + 1, sum + numbers[idx], numbers, target) +
-                dfs(idx + 1, sum - numbers[idx], numbers, target);
+        return dfs(idx + 1, sum + numbers[idx], numbers, target)
+                + dfs(idx + 1, sum - numbers[idx], numbers, target);
     }
 }

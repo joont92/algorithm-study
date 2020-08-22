@@ -1,5 +1,8 @@
 package baekjoon.datastructure;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
 
 /**
@@ -12,6 +15,19 @@ import java.util.Stack;
  * 동일하지 않다면 sequence 를 ++ 하면서 push
  */
 public class 스택_수열 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int count = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+
+        스택_수열 fn = new 스택_수열();
+        for (int i = 0; i < count; i++) {
+            sb.append(fn.stackSequence(Integer.parseInt(br.readLine())));
+        }
+        System.out.println(sb.toString().contains("NO") ? "NO" : sb.toString());
+    }
+
     private Stack<Integer> stack = new Stack<>();
     private int seq = 1;
 

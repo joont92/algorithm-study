@@ -68,6 +68,7 @@ public class 최대_힙 {
             int standard = heap.get(i);
             int left = heap.get(i * 2);
 
+            // 오른쪽이 없다면
             if(i * 2 + 1 >= heap.size()) {
                 if(standard > left) {
                     break;
