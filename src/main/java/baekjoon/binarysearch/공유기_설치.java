@@ -41,10 +41,10 @@ public class 공유기_설치 {
         int mid;
 
         int max = 0;
-        int count = 1;
         while (low <= high) {
             mid = (low + high) / 2;
 
+            int count = 1;
             int lastIdx = 0;
             for (int i = 1; i < home.length; i++) {
                 if(home[i] - home[lastIdx] >= mid) {
@@ -60,8 +60,6 @@ public class 공유기_설치 {
             } else {
                 high = mid - 1;
             }
-
-            count = 1;
         }
 
         return max;

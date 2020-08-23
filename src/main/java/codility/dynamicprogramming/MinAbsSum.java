@@ -1,5 +1,10 @@
 package codility.dynamicprogramming;
 
+/**
+ *
+ *
+ * not solved
+ */
 public class MinAbsSum {
     public int soultion(int[] array) {
         if(array.length == 0) {

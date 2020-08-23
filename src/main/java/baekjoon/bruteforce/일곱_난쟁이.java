@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 /**
  * https://www.acmicpc.net/problem/2309
  *
- * 9명 중 2명을 뽑아 키를 더한 뒤, 전체 난쟁이의 키에서 뺐을 떄 100이면 출력한다
+ * 9명 중 2명을 뽑아 키를 더한 뒤, 전체 난쟁이의 키에서 뺐을 때 100이면 출력한다
  * 재귀를 사용하지 않고 2가지 경우의 수를 출력하므로, 2중 루프가 필요하다
  */
 public class 일곱_난쟁이 {
-    public List<Integer> bottomUp(int... heights) {
+    public List<Integer> solution(int... heights) {
         List<Integer> result = new ArrayList<>();
 
         int sum = Arrays.stream(heights).sum();

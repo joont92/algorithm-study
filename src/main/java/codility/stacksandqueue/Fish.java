@@ -6,7 +6,7 @@ import java.util.Stack;
  * https://app.codility.com/programmers/lessons/7-stacks_and_queues/fish/
  *
  * 물고기가 위에서 아래로, 아래에서 위로 올라가면서 서로 잡아먹고, 최종적으로 남은 물고기의 개수를 세는 문제
- * 밑으로 내려가는 물고기를 스택에 담고, 위로 올라가는 물고기를 만났을 떄 크기 비교후 pop or ignore 하면 된다
+ * 밑으로 내려가는 물고기를 스택에 담고, 위로 올라가는 물고기를 만났을 때 크기 비교후 pop or ignore 하면 된다
  */
 public class Fish {
     public static void main(String[] args) {

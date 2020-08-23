@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  *      4. 7은 제외하고 7의 배수 전부 삭제
  *      > 그 다음 숫자인 11은, 11*11이 100을 넘으므로 계산할 필요가 없다
  *      > 11의 배수인 22 는 이미 2의 배수라 지워졌고, 33도 이미 3의 배수라 지워졌기 때문이다
- *      > 즉, i 보다 작은 수를 곱하는 경우의 수는 이미 앞에서 지워졌기 떄문에, i*i 이상의 값만 검사해주면 된다
+ *      > 즉, i 보다 작은 수를 곱하는 경우의 수는 이미 앞에서 지워졌기 때문에, i*i 이상의 값만 검사해주면 된다
  */
 public class 소수_구하기 {
     public List<Integer> getPrimeNumbers(int start, int end) {

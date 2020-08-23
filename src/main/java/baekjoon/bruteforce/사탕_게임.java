@@ -39,10 +39,7 @@ public class 사탕_게임 {
                     candyBox[i][j] = candyBox[i][j + 1];
                     candyBox[i][j + 1] = temp;
 
-                    int count = getMaxAmountOfEnableCandies(candyBox);
-                    if (max < count) {
-                        max = count;
-                    }
+                    max = Math.max(max, getMaxAmountOfEnableCandies(candyBox));
 
                     temp = candyBox[i][j];
                     candyBox[i][j] = candyBox[i][j + 1];
@@ -54,10 +51,7 @@ public class 사탕_게임 {
                     candyBox[i][j] = candyBox[i + 1][j];
                     candyBox[i + 1][j] = temp;
 
-                    int count = getMaxAmountOfEnableCandies(candyBox);
-                    if (max < count) {
-                        max = count;
-                    }
+                    max = Math.max(max, getMaxAmountOfEnableCandies(candyBox));
 
                     temp = candyBox[i][j];
                     candyBox[i][j] = candyBox[i + 1][j];

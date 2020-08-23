@@ -7,7 +7,7 @@ import java.util.Comparator;
  * https://programmers.co.kr/learn/courses/30/lessons/43164
  *
  * 전달받은 tickets 를 기반으로 dfs 탐색하면 된다
- * 첫번째로 찾은 항공권으로 갔다가 다음 항공권이 끊길수도 있기 떄문에, check=false 로 모든 경우의 수를 다 돌아줘야 한다
+ * 첫번째로 찾은 항공권으로 갔다가 다음 항공권이 끊길수도 있기 때문에, check=false 로 모든 경우의 수를 다 돌아줘야 한다
  * 정답을 찾았을 때 더 이상 경우의 수를 탐색하지 않게 하기 위해 global flag를 설정한다
  */
 public class 여행_경로 {

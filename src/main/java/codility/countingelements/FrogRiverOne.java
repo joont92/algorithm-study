@@ -3,7 +3,7 @@ package codility.countingelements;
 /**
  * https://app.codility.com/programmers/lessons/4-counting_elements/frog_river_one/
  *
- * 이동할 위치만큼 boolean 배열을 생성하고, 나뭇잎이 채워질 떄 마다 count-- 한다
+ * 이동할 위치만큼 boolean 배열을 생성하고, 나뭇잎이 채워질 때 마다 count-- 한다
  * count가 0이 되면 시간(index) 반환
  */
 public class FrogRiverOne {

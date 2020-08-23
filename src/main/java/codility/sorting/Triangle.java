@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * https://app.codility.com/programmers/lessons/6-sorting/triangle/
  *
- * 이미 정렬이 되었기 떄문에 3가지 조건을 모두 검사할 필요없이 앞의 두 숫자의 합이 세번쨰 숫자보다 큰지만 검사하면 된다
+ * 이미 정렬이 되었기 때문에 3가지 조건을 모두 검사할 필요없이 앞의 두 숫자의 합이 세번쨰 숫자보다 큰지만 검사하면 된다
  * 배열 요소의 범위가 Integer.MAX_VALUE 까지 이므로 단순히 더하면 overflow 가 발생하므로, 수식을 조금 바꿔준다
  */
 public class Triangle {
