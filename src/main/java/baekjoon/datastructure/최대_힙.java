@@ -36,6 +36,7 @@ public class 최대_힙 {
         this.heap.add(-1); // to start index 1
     }
 
+    // 위로 찾음
     public void add(int number) {
         heap.add(number);
 
@@ -51,6 +52,7 @@ public class 최대_힙 {
         }
     }
 
+    // 아래로 찾음
     public int remove() {
         if(heap.size() == 1) {
             return 0;
