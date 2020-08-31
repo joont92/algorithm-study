@@ -13,22 +13,6 @@ public class ReverseInteger {
         System.out.println(fn.reverse2(-146_384_741_3) == 0);
     }
 
-    public int reverse1(int x) {
-        char[] chars = String.valueOf(x).toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        boolean isNegative = chars[0] == '-';
-        for (int i = chars.length - 1; i >= (isNegative ? 1 : 0); i--) {
-            sb.append(chars[i]);
-        }
-
-        try {
-            return Integer.parseInt(sb.toString()) * (isNegative ? -1 : 1);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
     public int reverse2(int x) {
         int pop;
         int ans = 0;
@@ -48,5 +32,21 @@ public class ReverseInteger {
         }
 
         return ans;
+    }
+
+    public int reverse1(int x) {
+        char[] chars = String.valueOf(x).toCharArray();
+
+        StringBuilder sb = new StringBuilder();
+        boolean isNegative = chars[0] == '-';
+        for (int i = chars.length - 1; i >= (isNegative ? 1 : 0); i--) {
+            sb.append(chars[i]);
+        }
+
+        try {
+            return Integer.parseInt(sb.toString()) * (isNegative ? -1 : 1);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }

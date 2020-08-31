@@ -26,18 +26,6 @@ public class TwoSum {
         Arrays.stream(fn.twoSum2(nums, 6)).forEach(System.out::println);
     }
 
-    public int[] twoSum1(int[] nums, int target) {
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if(nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
-                }
-            }
-        }
-
-        throw new IllegalArgumentException();
-    }
-
     public int[] twoSum2(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
 
@@ -47,6 +35,18 @@ public class TwoSum {
                 return new int[]{map.get(sub), i};
             }
             map.put(nums[i], i);
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    public int[] twoSum1(int[] nums, int target) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if(nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
         }
 
         throw new IllegalArgumentException();
