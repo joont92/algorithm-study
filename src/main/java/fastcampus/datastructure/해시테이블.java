@@ -7,6 +7,10 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 1. hash 함수에 key 를 넣어 address 를 구한다
+ * 2. address 에서 List<KeyValue>를 구한 뒤, key 가 같은 객체를 반환한다
+ */
 public class 해시테이블 {
     private static final int DEFAULT_TABLE_SIZE = 20;
     /**

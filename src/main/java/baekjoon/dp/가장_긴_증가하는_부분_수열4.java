@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  * https://www.acmicpc.net/problem/14002
  *
  * 역추적 과정이 필요함
- * lis 에 값에 저장될 때 마다 어떤 lis 를 참조했는지 배열에 기록하고, 마지막에 이를 역추적해서 출력하면 된다
+ * lis 에 값이 저장될 때 마다 어떤 lis 를 참조했는지 배열에 기록하고, 마지막에 이를 역추적해서 출력하면 된다
  */
 public class 가장_긴_증가하는_부분_수열4 {
     public static void main(String[] args) throws IOException {

@@ -29,6 +29,7 @@ public class StoneWall {
         for (int block : H) {
             if(stack.peek() < block) {
                 stack.push(block);
+                continue;
             }
 
             while (!stack.isEmpty() && stack.peek() > block) {

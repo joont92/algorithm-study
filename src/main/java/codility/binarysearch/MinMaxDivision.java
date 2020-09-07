@@ -3,7 +3,7 @@ package codility.binarysearch;
 /**
  * https://app.codility.com/programmers/lessons/14-binary_search_algorithm/min_max_division/
  *
- * 배열의 가장 작은 숫자부터 배열의 전체 합을 기준으로 잡고, 중간값부터 이진탐색으로 minLargeMax 찾는다
+ * 배열의 가장 작은 숫자부터 배열의 전체 합을 기준으로 잡고, 중간값부터 이진탐색으로 minLargeSum 찾는다
  * 배열의 첫번쨰부터 bucket 에 넣다가 중간값이 넘으면 다음 bucket 으로 넘어가도록 한다
  * bucket 의 개수와 K 를 비교해 low, high 값을 조정한다
  *

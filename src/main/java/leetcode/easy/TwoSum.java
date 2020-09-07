@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * https://leetcode.com/problems/two-sum/solution/
+ * https://leetcode.com/problems/two-sum
  *
  * 1. brute force
  *   - i, j + 1 을 전부 돌면서 합이 target 이 되면 반환한다
