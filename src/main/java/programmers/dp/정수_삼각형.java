@@ -1,9 +1,11 @@
 package programmers.dp;
 
+import java.util.Arrays;
+
 /**
  * https://programmers.co.kr/learn/courses/30/lessons/43105
  *
- * 자신의 아래 왼쪽, 오른쪽 숫자 구하는법 = depth + 1, 왼쪽 = idx, 오른쪽 idx + 1
+ * 자신의 아래 왼쪽, 오른쪽 숫자 구하는법 = depth + 1, 왼쪽 = idx, 오른쪽 = idx + 1
  * > Math.max(tri[depth][idx] + tri[depth + 1][idx], tri[depth][idx] + tri[depth + 1][idx + 1])
  */
 public class 정수_삼각형 {

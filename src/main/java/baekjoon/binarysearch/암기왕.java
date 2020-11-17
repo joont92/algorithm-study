@@ -34,11 +34,11 @@ public class 암기왕 {
     public int[] solution(int[] note1, int[] note2) {
         int[] answer = new int[note2.length];
 
-        int low = 0;
-        int high = note1.length - 1;
-        int mid;
-
         for (int i = 0; i < note2.length; i++) {
+            int low = 0;
+            int high = note1.length - 1;
+            int mid;
+
             while(low <= high) {
                 mid = (low + high) / 2;
 
@@ -53,9 +53,6 @@ public class 암기왕 {
                     low = mid + 1;
                 }
             }
-
-            low = 0;
-            high = note1.length - 1;
         }
 
         return answer;

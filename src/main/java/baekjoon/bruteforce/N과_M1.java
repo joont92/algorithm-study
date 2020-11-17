@@ -25,13 +25,13 @@ public class N과_M1 {
         int[] param = Arrays.stream(br.readLine().split(" ", 2))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        fn.cases(0, param[0], param[1]);
+        fn.solution(0, param[0], param[1]);
     }
 
     int[] print = new int[9];
     boolean[] check = new boolean[9];
 
-    public void cases(int idx, int n, int m) {
+    public void solution(int idx, int n, int m) {
         if(idx == m) {
             System.out.println(Arrays.stream(print)
                     .filter(i -> i > 0)
@@ -47,7 +47,7 @@ public class N과_M1 {
 
             print[idx] = i;
             check[i] = true;
-            cases(idx + 1, n, m);
+            solution(idx + 1, n, m);
             check[i] = false;
         }
     }

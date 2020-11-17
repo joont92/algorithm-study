@@ -11,16 +11,16 @@ import java.util.Queue;
  */
 public class 네트워크 {
     public static void main(String[] args) {
-        int[][] network = {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
+        int[][] network = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
 
         네트워크 fn = new 네트워크();
         System.out.println(fn.solution(3, network));
     }
 
-    public int solution(int n, int[][] computers) {
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] check = new boolean[computers.length];
+    public int solution(int n, int[][] network) {
+        boolean[] check = new boolean[network.length];
 
+        Queue<Integer> queue = new LinkedList<>();
         int answer = 0;
         for (int i = 0; i < n; i++) {
             if(!check[i]) {
@@ -29,22 +29,21 @@ public class 네트워크 {
                 answer++;
             }
 
-            while (!queue.isEmpty()) {
-                int startIdx = queue.poll();
+            while(!queue.isEmpty()) {
+                int vertex = queue.poll();
 
-                for (int j = 0; j < computers[startIdx].length; j++) {
-                    if(startIdx == j) {
+                for (int j = 0; j < network[vertex].length; j++) {
+                    if(vertex == j) {
                         continue;
                     }
 
-                    if(!check[j] && computers[startIdx][j] > 0) {
+                    if(!check[j] && network[vertex][j] > 0) {
                         check[j] = true;
                         queue.offer(j);
                     }
                 }
             }
         }
-
 
         return answer;
     }

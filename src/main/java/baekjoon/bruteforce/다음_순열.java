@@ -1,5 +1,11 @@
 package baekjoon.bruteforce;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * https://www.acmicpc.net/problem/10972
  *
@@ -16,9 +22,22 @@ package baekjoon.bruteforce;
  *   - 724 뒤 숫자들을 오름차순으로 바꿔주면 724로 시작하는 첫 순열이 된다
  */
 public class 다음_순열 {
-    public int[] nextPermutation(int[] permutation) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(br.readLine());
+        int[] permutation = Arrays.stream(br.readLine().split(" ", count))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        다음_순열 fn = new 다음_순열();
+        System.out.println(Arrays.stream(fn.solution(permutation))
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining(" ")));
+    }
+
+    public int[] solution(int[] permutation) {
         int boundaryIdx = -1;
-        for (int i = permutation.length - 1; i >= 1 ; i--) {
+        for (int i = permutation.length - 1; i >= 1; i--) {
             if(permutation[i] > permutation[i - 1]) {
                 boundaryIdx = i;
                 break;
@@ -38,17 +57,14 @@ public class 다음_순열 {
             }
         }
 
-        int temp = permutation[minIdx];
-        permutation[minIdx] = permutation[boundaryIdx - 1];
-        permutation[boundaryIdx - 1] = temp;
+        int temp = permutation[boundaryIdx - 1];
+        permutation[boundaryIdx - 1] = permutation[minIdx];
+        permutation[minIdx] = temp;
 
-        int[] result = new int[permutation.length];
-        System.arraycopy(permutation, 0, result, 0, boundaryIdx);
+        int[] answer = new int[permutation.length];
+        System.arraycopy(permutation, 0, answer, 0, boundaryIdx);
+        System.arraycopy(permutation, boundaryIdx, answer, boundaryIdx, permutation.length - boundaryIdx);
 
-        for (int i = boundaryIdx, j = 1; i < permutation.length; i++, j++) {
-            result[i] = permutation[permutation.length - j];
-        }
-
-        return result;
+        return answer;
     }
 }
