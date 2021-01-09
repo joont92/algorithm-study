@@ -1,4 +1,4 @@
-package baekjoon.datastructure;
+package baekjoon.datastructure.basic;
 
 import java.util.Arrays;
 import java.util.Collections;
