@@ -1,32 +1,62 @@
 package baekjoon.datastructure.basic;
 
-import java.util.Scanner;
-
 /**
  * https://www.acmicpc.net/problem/9012
+ *
  */
 public class 괄호 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println(tc1());
+        System.out.println(tc2());
+        System.out.println(tc3());
+    }
 
-        int count = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < count; i++) {
-            String ps = scanner.nextLine();
+    public String solution(String parenthesis) {
+        var result = 0;
+        var chars = parenthesis.toCharArray();
+        for (char ch : chars) {
+            if(ch == '(') {
+                result++;
+            } else if (ch == ')') {
+                result--;
 
-            int result = 0;
-            for (char c : ps.toCharArray()) {
-                if(c == '(') {
-                    result++;
-                } else if(c == ')') {
-                    result--;
-
-                    if(result < 0) {
-                        break;
-                    }
+                if(result < 0) {
+                    break;
                 }
+            } else {
+                throw new IllegalArgumentException();
             }
-
-            System.out.println(result == 0 ? "YES" : "NO");
         }
+
+        return result == 0 ? "YES" : "NO";
+    }
+
+    private static boolean tc1() {
+        var fn = new 괄호();
+        if(!fn.solution("(())())").equals("NO")) return false;
+        if(!fn.solution("(((()())()").equals("NO")) return false;
+        if(!fn.solution("(()())((()))").equals("YES")) return false;
+        if(!fn.solution("((()()(()))(((())))()").equals("NO")) return false;
+        if(!fn.solution("()()()()(()()())()").equals("YES")) return false;
+        if(!fn.solution("(()((())()(").equals("NO")) return false;
+
+        return true;
+    }
+
+    private static boolean tc2() {
+        var fn = new 괄호();
+        if(!fn.solution("((").equals("NO")) return false;
+        if(!fn.solution("))").equals("NO")) return false;
+        if(!fn.solution("())(()").equals("NO")) return false;
+
+        return true;
+    }
+
+    private static boolean tc3() {
+        var fn = new 괄호();
+        if(!fn.solution("(").equals("NO")) return false;
+        if(!fn.solution(")").equals("NO")) return false;
+
+        return true;
     }
 }

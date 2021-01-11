@@ -9,9 +9,75 @@ import java.io.InputStreamReader;
  */
 public class 스택 {
     public static void main(String[] args) {
+//        basic();
         System.out.println(tc1());
         System.out.println(tc2());
         System.out.println(tc3());
+    }
+
+    private static final int DEFAULT_SIZE = 10;
+
+    int index;
+    int[] array;
+
+    public 스택() {
+        index = 0;
+        array = new int[DEFAULT_SIZE];
+    }
+
+    public Integer solution(String operation) {
+        var split = operation.split(" ");
+        var command = split[0];
+
+        switch (command) {
+            case "push":
+                push(Integer.parseInt(split[1]));
+                return null;
+            case "pop":
+                return pop();
+            case "top":
+                return top();
+            case "size":
+                return size();
+            case "empty":
+                return empty();
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    public void push(int number) {
+        if(index == array.length) {
+            var newArr = new int[array.length + DEFAULT_SIZE];
+            System.arraycopy(array, 0, newArr, 0, array.length);
+            array = newArr;
+        }
+
+        array[index++] = number;
+    }
+
+    public int pop() {
+        if(index == 0) {
+            return -1;
+        }
+
+        return array[--index];
+    }
+
+    public int top() {
+        if(index == 0) {
+            return -1;
+        }
+
+        return array[index - 1];
+    }
+
+    public int size() {
+        return index;
+    }
+
+    public int empty() {
+        return index == 0 ? 1 : 0;
     }
 
     private static void basic() {
@@ -79,70 +145,5 @@ public class 스택 {
         if(fn.solution("size") != 0) return false;
 
         return true;
-    }
-
-    private static final int DEFAULT_SIZE = 10;
-
-    int index;
-    int[] array;
-
-    public 스택() {
-        index = 0;
-        array = new int[DEFAULT_SIZE];
-    }
-
-    public Integer solution(String operation) {
-        var split = operation.split(" ");
-        var command = split[0];
-
-        switch (command) {
-            case "push":
-                push(Integer.parseInt(split[1]));
-                return null;
-            case "pop":
-                return pop();
-            case "top":
-                return top();
-            case "size":
-                return size();
-            case "empty":
-                return empty();
-        }
-
-        throw new IllegalArgumentException();
-    }
-
-    public void push(int number) {
-        if(index == array.length) {
-            var newArr = new int[array.length + DEFAULT_SIZE];
-            System.arraycopy(array, 0, newArr, 0, array.length);
-            array = newArr;
-        }
-
-        array[index++] = number;
-    }
-
-    public int pop() {
-        if(index == 0) {
-            return -1;
-        }
-
-        return array[--index];
-    }
-
-    public int top() {
-        if(index == 0) {
-            return -1;
-        }
-
-        return array[index - 1];
-    }
-
-    public int size() {
-        return index;
-    }
-
-    public int empty() {
-        return index == 0 ? 1 : 0;
     }
 }
