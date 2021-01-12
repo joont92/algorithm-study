@@ -25,8 +25,8 @@ public class 스택 {
         array = new int[DEFAULT_SIZE];
     }
 
-    public Integer solution(String operation) {
-        var split = operation.split(" ");
+    public Integer command(String arg) {
+        var split = arg.split(" ");
         var command = split[0];
 
         switch (command) {
@@ -87,7 +87,7 @@ public class 스택 {
             var br = new BufferedReader(new InputStreamReader(System.in));
             var count = Integer.parseInt(br.readLine());
             for (var i = 0; i < count; i++) {
-                var result = fn.solution(br.readLine());
+                var result = fn.command(br.readLine());
                 if(result != null) {
                     System.out.println(result);
                 }
@@ -100,20 +100,20 @@ public class 스택 {
     private static boolean tc1() {
         var fn = new 스택();
 
-        if(fn.solution("push 1") != null) return false;
-        if(fn.solution("push 2") != null) return false;
-        if(fn.solution("top") != 2) return false;
-        if(fn.solution("size") != 2) return false;
-        if(fn.solution("empty") != 0) return false;
-        if(fn.solution("pop") != 2) return false;
-        if(fn.solution("pop") != 1) return false;
-        if(fn.solution("pop") != -1) return false;
-        if(fn.solution("size") != 0) return false;
-        if(fn.solution("empty") != 1) return false;
-        if(fn.solution("pop") != -1) return false;
-        if(fn.solution("push 3") != null) return false;
-        if(fn.solution("empty") != 0) return false;
-        if(fn.solution("top") != 3) return false;
+        if(fn.command("push 1") != null) return false;
+        if(fn.command("push 2") != null) return false;
+        if(fn.command("top") != 2) return false;
+        if(fn.command("size") != 2) return false;
+        if(fn.command("empty") != 0) return false;
+        if(fn.command("pop") != 2) return false;
+        if(fn.command("pop") != 1) return false;
+        if(fn.command("pop") != -1) return false;
+        if(fn.command("size") != 0) return false;
+        if(fn.command("empty") != 1) return false;
+        if(fn.command("pop") != -1) return false;
+        if(fn.command("push 3") != null) return false;
+        if(fn.command("empty") != 0) return false;
+        if(fn.command("top") != 3) return false;
 
         return true;
     }
@@ -121,13 +121,13 @@ public class 스택 {
     private static boolean tc2() {
         var fn = new 스택();
 
-        if(fn.solution("pop") != -1) return false;
-        if(fn.solution("top") != -1) return false;
-        if(fn.solution("push 123") != null) return false;
-        if(fn.solution("top") != 123) return false;
-        if(fn.solution("pop") != 123) return false;
-        if(fn.solution("top") != -1) return false;
-        if(fn.solution("pop") != -1) return false;
+        if(fn.command("pop") != -1) return false;
+        if(fn.command("top") != -1) return false;
+        if(fn.command("push 123") != null) return false;
+        if(fn.command("top") != 123) return false;
+        if(fn.command("pop") != 123) return false;
+        if(fn.command("top") != -1) return false;
+        if(fn.command("pop") != -1) return false;
 
         return true;
     }
@@ -136,13 +136,13 @@ public class 스택 {
         var fn = new 스택();
 
         for (int i = 1; i <= 100; i++) {
-            if(fn.solution("push " + i) != null) return false;
+            if(fn.command("push " + i) != null) return false;
         }
         for (int i = 100; i >= 1; i--) {
-            if(fn.solution("pop") != i) return false;
+            if(fn.command("pop") != i) return false;
         }
-        if(fn.solution("top") != -1) return false;
-        if(fn.solution("size") != 0) return false;
+        if(fn.command("top") != -1) return false;
+        if(fn.command("size") != 0) return false;
 
         return true;
     }
