@@ -7,10 +7,6 @@ package baekjoon.datastructure.basic;
  * 맨 마지막 글자는 공백이 없으므로 반복이 끝난 후 한번 더 스택에 있는 내용을 비워줘야 함
  */
 public class 단어_뒤집기 {
-    public static void main(String[] args) {
-        System.out.println(tc1());
-    }
-
     public String solution(String sentence) {
         var result = new StringBuilder();
 
@@ -35,14 +31,11 @@ public class 단어_뒤집기 {
         return result.toString();
     }
 
-    private static boolean tc1() {
+    public static void main(String[] args) {
         var fn = new 단어_뒤집기();
-
-        if(!fn.solution("I am happy today").equals("I ma yppah yadot")) return false;
-        if(!fn.solution("We want to win the first prize").equals("eW tnaw ot niw eht tsrif ezirp")) return false;
-        if(!fn.solution("aaaabbbb").equals("bbbbaaaa")) return false;
-        if(!fn.solution("a").equals("a")) return false;
-
-        return true;
+        System.out.println(fn.solution("I am happy today").equals("I ma yppah yadot"));
+        System.out.println(fn.solution("We want to win the first prize").equals("eW tnaw ot niw eht tsrif ezirp"));
+        System.out.println(fn.solution("aaaabbbb").equals("bbbbaaaa"));
+        System.out.println(fn.solution("a").equals("a"));
     }
 }

@@ -18,13 +18,6 @@ import java.util.stream.Stream;
  *  커서가 오른쪽으로 움직이면 오른쪽 스택에서 왼쪽 스택으로 값을 옮긴다 push(pop)
  */
 public class 에디터 {
-    public static void main(String[] args) {
-//        basic();
-        System.out.println(tc1());
-        System.out.println(tc2());
-        System.out.println(tc3());
-    }
-
     private Stack<Character> leftStack;
     private Stack<Character> rightStack;
 
@@ -94,8 +87,66 @@ public class 에디터 {
                 .collect(Collectors.joining());
     }
 
-    private static void basic() {
+    public static void main(String[] args) {
+//        basic();
+        System.out.println(new 에디터("abcd")
+                .command("P e")
+                .command("P f")
+                .result().equals("abcdef"));
+        System.out.println(new 에디터("abcd")
+                .command("B")
+                .command("B")
+                .result().equals("ab"));
+        System.out.println(new 에디터("abcd")
+                .command("L")
+                .command("L")
+                .command("B")
+                .result().equals("acd"));
+        System.out.println(new 에디터("abcd")
+                .command("L")
+                .command("L")
+                .command("D")
+                .command("B")
+                .result().equals("abd"));
+        System.out.println(new 에디터("")
+                .command("P a")
+                .result().equals("a"));
+        System.out.println(new 에디터("a")
+                .command("B")
+                .command("B")
+                .result().equals(""));
+        System.out.println(new 에디터("abcd")
+                .command("P x")
+                .command("L")
+                .command("P y")
+                .result().equals("abcdyx"));
+        System.out.println(new 에디터("abc")
+                .command("L")
+                .command("L")
+                .command("L")
+                .command("L")
+                .command("L")
+                .command("P x")
+                .command("L")
+                .command("B")
+                .command("P y")
+                .result().equals("yxabc"));
+        System.out.println(new 에디터("dmih")
+                .command("B")
+                .command("B")
+                .command("P x")
+                .command("L")
+                .command("B")
+                .command("B")
+                .command("B")
+                .command("P y")
+                .command("D")
+                .command("D")
+                .command("P z")
+                .result().equals("yxz"));
+    }
 
+    private static void basic() {
         try {
             var br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -108,41 +159,5 @@ public class 에디터 {
         } catch (IOException e) {
             //
         }
-    }
-
-    private static boolean tc1() {
-        if(!new 에디터("abcd").command("P e").command("P f")
-                .result().equals("abcdef")) return false;
-        if(!new 에디터("abcd").command("B").command("B")
-                .result().equals("ab")) return false;
-        if(!new 에디터("abcd").command("L").command("L").command("B")
-                .result().equals("acd")) return false;
-        if(!new 에디터("abcd").command("L").command("L").command("D").command("B")
-                .result().equals("abd")) return false;
-
-        return true;
-    }
-
-    private static boolean tc2() {
-        if(!new 에디터("").command("P a")
-                .result().equals("a")) return false;
-        if(!new 에디터("a").command("B").command("B")
-                .result().equals("")) return false;
-
-        return true;
-    }
-
-    private static boolean tc3() {
-        if(!new 에디터("abcd").command("P x").command("L").command("P y")
-                .result().equals("abcdyx")) return false;
-        if(!new 에디터("abc").command("L").command("L").command("L").command("L")
-                .command("L").command("P x").command("L").command("B").command("P y")
-                .result().equals("yxabc")) return false;
-        if(!new 에디터("dmih").command("B").command("B").command("P x").command("L")
-                .command("B").command("B").command("B").command("P y").command("D")
-                .command("D").command("P z")
-                .result().equals("yxz")) return false;
-
-        return true;
     }
 }

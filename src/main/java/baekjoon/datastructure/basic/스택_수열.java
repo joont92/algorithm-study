@@ -11,13 +11,6 @@ import java.util.Stack;
  * 올라가는건 건너뛰어도 상관없지만 내려올때는 순서대로 내려와야함(혹은 앞에서 이미 출력했거나)
  */
 public class 스택_수열 {
-    public static void main(String[] args) {
-//        basic();
-        System.out.println(tc1());
-        System.out.println(tc2());
-        System.out.println(tc3());
-    }
-
     public String solution(int[] numbers) {
         var result = new StringBuilder();
 
@@ -40,6 +33,19 @@ public class 스택_수열 {
         return result.toString();
     }
 
+    public static void main(String[] args) {
+//        basic();
+        var fn = new 스택_수열();
+        System.out.println(fn.solution(new int[]{1,2,3,4,5}).equals("+-+-+-+-+-"));
+        System.out.println(fn.solution(new int[]{3,2,1}).equals("+++---"));
+        System.out.println(fn.solution(new int[]{3,5,4}).equals("+++-++--"));
+        System.out.println(fn.solution(new int[]{4,3,6,8,7,5,2,1}).equals("++++--++-++-----"));
+        System.out.println(fn.solution(new int[]{1,2,5,3,4}).equals("NO"));
+        System.out.println(fn.solution(new int[]{5,1}).equals("NO"));
+        System.out.println(fn.solution(new int[]{5}).equals("+++++-"));
+        System.out.println(fn.solution(new int[]{3,3}).equals("NO"));
+    }
+
     private static void basic() {
         var fn = new 스택_수열();
 
@@ -55,31 +61,5 @@ public class 스택_수열 {
         } catch (IOException e) {
             //
         }
-    }
-
-    private static boolean tc1() {
-        var fn = new 스택_수열();
-        if(!fn.solution(new int[]{1,2,3,4,5}).equals("+-+-+-+-+-")) return false;
-        if(!fn.solution(new int[]{3,2,1}).equals("+++---")) return false;
-        if(!fn.solution(new int[]{3,5,4}).equals("+++-++--")) return false;
-
-        return true;
-    }
-
-    private static boolean tc2() {
-        var fn = new 스택_수열();
-        if(!fn.solution(new int[]{4,3,6,8,7,5,2,1}).equals("++++--++-++-----")) return false;
-        if(!fn.solution(new int[]{1,2,5,3,4}).equals("NO")) return false;
-        if(!fn.solution(new int[]{5,1}).equals("NO")) return false;
-
-        return true;
-    }
-
-    private static boolean tc3() {
-        var fn = new 스택_수열();
-        if(!fn.solution(new int[]{5}).equals("+++++-")) return false;
-        if(!fn.solution(new int[]{3,3}).equals("NO")) return false;
-
-        return true;
     }
 }

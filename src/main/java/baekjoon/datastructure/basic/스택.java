@@ -3,47 +3,58 @@ package baekjoon.datastructure.basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * https://www.acmicpc.net/problem/10828
  */
 public class 스택 {
-    public static void main(String[] args) {
-//        basic();
-        System.out.println(tc1());
-        System.out.println(tc2());
-        System.out.println(tc3());
-    }
-
     private static final int DEFAULT_SIZE = 10;
 
-    int index;
-    int[] array;
+    private List<Integer> history;
+    private int index;
+    private int[] array;
 
     public 스택() {
         index = 0;
         array = new int[DEFAULT_SIZE];
+
+        history = new ArrayList<>();
     }
 
-    public Integer command(String arg) {
+    public 스택 command(String arg) {
         var split = arg.split(" ");
         var command = split[0];
 
         switch (command) {
             case "push":
                 push(Integer.parseInt(split[1]));
-                return null;
+                break;
             case "pop":
-                return pop();
+                history.add(pop());
+                break;
             case "top":
-                return top();
+                history.add(top());
+                break;
             case "size":
-                return size();
+                history.add(size());
+                break;
             case "empty":
-                return empty();
+                history.add(empty());
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
-        throw new IllegalArgumentException();
+        return this;
+    }
+
+    public int[] result() {
+        return history.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     public void push(int number) {
@@ -80,6 +91,61 @@ public class 스택 {
         return index == 0 ? 1 : 0;
     }
 
+    public static void main(String[] args) {
+//        basic();
+
+        var tc1 = new 스택();
+        System.out.println(Arrays.equals(
+                tc1.command("push 1")
+                        .command("push 2")
+                        .command("top")
+                        .command("size")
+                        .command("empty")
+                        .command("pop")
+                        .command("pop")
+                        .command("pop")
+                        .command("size")
+                        .command("empty")
+                        .command("pop")
+                        .command("push 3")
+                        .command("empty")
+                        .command("top")
+                        .result(),
+                new int[]{2,2,0,2,1,-1,0,1,-1,0,3})
+        );
+
+        var tc2 = new 스택();
+        System.out.println(Arrays.equals(
+                tc2.command("pop")
+                        .command("top")
+                        .command("push 123")
+                        .command("top")
+                        .command("pop")
+                        .command("top")
+                        .command("pop")
+                        .result(),
+                new int[]{-1,-1,123,123,-1,-1})
+        );
+
+        var tc3 = new 스택();
+        var expected = new ArrayList<Integer>();
+        for (int i = 1; i <= 100; i++) {
+            tc3.command("push " + i);
+        }
+        for (int i = 100; i >= 1; i--) {
+            tc3.command("pop");
+            expected.add(i);
+        }
+        tc3.command("top");
+        expected.add(-1);
+        tc3.command("size");
+        expected.add(0);
+        System.out.println(Arrays.equals(
+                tc3.result(), expected.stream()
+                        .mapToInt(Integer::intValue)
+                        .toArray()));
+    }
+
     private static void basic() {
         var fn = new 스택();
 
@@ -95,55 +161,5 @@ public class 스택 {
         } catch (IOException e) {
             //
         }
-    }
-
-    private static boolean tc1() {
-        var fn = new 스택();
-
-        if(fn.command("push 1") != null) return false;
-        if(fn.command("push 2") != null) return false;
-        if(fn.command("top") != 2) return false;
-        if(fn.command("size") != 2) return false;
-        if(fn.command("empty") != 0) return false;
-        if(fn.command("pop") != 2) return false;
-        if(fn.command("pop") != 1) return false;
-        if(fn.command("pop") != -1) return false;
-        if(fn.command("size") != 0) return false;
-        if(fn.command("empty") != 1) return false;
-        if(fn.command("pop") != -1) return false;
-        if(fn.command("push 3") != null) return false;
-        if(fn.command("empty") != 0) return false;
-        if(fn.command("top") != 3) return false;
-
-        return true;
-    }
-
-    private static boolean tc2() {
-        var fn = new 스택();
-
-        if(fn.command("pop") != -1) return false;
-        if(fn.command("top") != -1) return false;
-        if(fn.command("push 123") != null) return false;
-        if(fn.command("top") != 123) return false;
-        if(fn.command("pop") != 123) return false;
-        if(fn.command("top") != -1) return false;
-        if(fn.command("pop") != -1) return false;
-
-        return true;
-    }
-
-    private static boolean tc3() {
-        var fn = new 스택();
-
-        for (int i = 1; i <= 100; i++) {
-            if(fn.command("push " + i) != null) return false;
-        }
-        for (int i = 100; i >= 1; i--) {
-            if(fn.command("pop") != i) return false;
-        }
-        if(fn.command("top") != -1) return false;
-        if(fn.command("size") != 0) return false;
-
-        return true;
     }
 }
