@@ -65,13 +65,11 @@ public class 덱 {
     }
 
     public void pushFront(int number) {
-        if (size() > 0) {
-           var newArray = new int[array.length + 1 - begin];
-           System.arraycopy(array, begin, newArray, 1, array.length - begin);
-           array = newArray;
-           end -= begin;
-           begin = 0;
-        }
+        var newArray = new int[array.length + 1 - begin];
+        System.arraycopy(array, begin, newArray, 1, array.length - begin);
+        array = newArray;
+        end -= begin;
+        begin = 0;
 
         array[begin] = number;
         end++;
@@ -123,7 +121,7 @@ public class 덱 {
     }
 
     public static void main(String[] args) {
-        basic();
+//        basic();
         System.out.println(Arrays.equals(
                 new 덱().command("push_front 1")
                         .command("push_front 2")
@@ -211,6 +209,21 @@ public class 덱 {
                         .command("pop_back")
                         .result(),
                 new int[]{-1,-1,-1,-1,1,1,2,2,333,10,10,333,20,1234,1234,20}));
+
+        System.out.println(Arrays.equals(
+                new 덱().command("push_front 1").command("push_front 2").command("push_front 3")
+                        .command("pop_front").command("pop_front")
+                        .command("push_front 4").command("push_front 5").command("push_front 6")
+                        .command("pop_front").command("pop_front")
+                        .result(),
+                new int[]{3,2,6,5}));
+
+        System.out.println(Arrays.equals(
+                new 덱().command("push_front 1").command("push_front 2").command("push_front 3")
+                        .command("pop_front").command("pop_front").command("pop_front")
+                        .command("pop_back")
+                        .result(),
+                new int[]{3,2,1,-1}));
     }
 
     private static void basic() {
