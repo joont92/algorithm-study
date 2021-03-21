@@ -1,57 +1,56 @@
 package leetcode.easy;
 
-import java.util.Stack;
-
 /**
  * https://leetcode.com/problems/palindrome-number/
  *
- * - 회문인지 검사하는 문제
- * - 숫자의 절반 길이까지 뒤에서 부터 읽어서 저장한 뒤, 저장한 숫자와 남은 숫자가 같은지만 비교하면 된다
- *   - 1221 이면, 21을 거꾸로 저장한 뒤(12), 앞(12)와 같은지 비교하면 된다
- * - 숫자의 개수가 짝수가 아닐수도 있으니, 10으로 나눈 숫자도 같은지 같이 검사한다
+ * 1. 숫자를 다 뒤집은 뒤 기존의 숫자와 비교하는 방법
+ * 2. 반복문을 돌면서 기존의 숫자가 10씩 나눠지므로, "기존 숫자 > 뒤집은 숫자" 탈출할 때까지만 뒤집으면 딱 반만 뒤집게 된다
+ *    - 회문일때만 딱 반만 뒤집게 되는 공식이다(예외 예시 : 567665)
+ *    - 홀수 길이의 회문일때는 뒤집은 숫자에 중간글자도 추가되므로, 최종 검사시에 / 10 도 같이 검사해준다
+ *
  */
 public class PalindromeNumber {
     public static void main(String[] args) {
-        PalindromeNumber fn = new PalindromeNumber();
-        System.out.println(fn.isPalindrome2(1));
+        System.out.println(new PalindromeNumber().isPalindrome(121) == true);
+        System.out.println(new PalindromeNumber().isPalindrome(23) == false);
+        System.out.println(new PalindromeNumber().isPalindrome(111) == true);
+        System.out.println(new PalindromeNumber().isPalindrome(1221) == true);
+        System.out.println(new PalindromeNumber().isPalindrome(123123) == false);
+        System.out.println(new PalindromeNumber().isPalindrome(-121) == false);
+        System.out.println(new PalindromeNumber().isPalindrome(-1221) == false);
+        System.out.println(new PalindromeNumber().isPalindrome(0) == true);
+        System.out.println(new PalindromeNumber().isPalindrome(10) == false);
+    }
+
+    public boolean isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        var revertedNumber = 0;
+
+        while (x > revertedNumber) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == revertedNumber || x == revertedNumber / 10;
     }
 
     public boolean isPalindrome2(int x) {
-        if(x < 0) {
+        if (x < 0) {
             return false;
         }
 
-        int y = 0;
-        int length = String.valueOf(x).length();
+        var str = String.valueOf(x);
+        var mid = str.length() / 2;
 
-        int standard = length / 2;
-        while (standard > 0) {
-            y = y * 10 + x % 10;
-            x /= 10;
-            standard--;
-        }
-
-        return x == y || x / 10 == y;
-    }
-
-    public boolean isPalindrome1(int x) {
-        if(x < 0) {
-            return false;
-        }
-
-        Stack<Character> stack = new Stack<>();
-        char[] split = String.valueOf(x).toCharArray();
-        int mid = split.length / 2;
         for (int i = 0; i < mid; i++) {
-            stack.push(split[i]);
-        }
-
-        for (int i = split.length % 2 == 0 ? mid : mid + 1; i < split.length; i++) {
-            if(stack.pop() != split[i]) {
+            if (str.charAt(i) != str.charAt(str.length() - 1 - i)) {
                 return false;
             }
         }
 
-        return stack.isEmpty();
+        return true;
     }
 }
