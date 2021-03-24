@@ -17,6 +17,7 @@ public class 단어_뒤집기2 {
 
         for (char ch : arg.toCharArray()) {
             if (ch == '<') {
+                // 지금까지 저장해왔던 값
                 while (!stack.isEmpty()) {
                     result.append(stack.pop());
                 }
