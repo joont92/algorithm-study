@@ -11,11 +11,10 @@ import java.util.stream.Collectors
  * 앞에서부터 스택에 하나씩 더하면서
  * 현재 숫자가 스택에 있는 숫자보다 클 경우 result에 추가한다(작은 숫자가 나온다면 계속 스택에서 뺸다)
  * 현재 숫자가 작으면 스택에 더하고 다음 숫자로 넘어간다
- *
- * 끝까지
  */
 
 class 오큰수 {
+    // stack에 숫자 대신 index 값을 넣으면 코드를 더 줄일 수 있다
     fun solution(numbers: IntArray): IntArray {
         val result = IntArray(numbers.size)
 
@@ -44,7 +43,6 @@ class 오큰수 {
 }
 
 fun main(args: Array<String>) {
-//    basic()
     println(오큰수().solution(intArrayOf(1,2,3,4)) contentEquals intArrayOf(2,3,4,-1))
     println(오큰수().solution(intArrayOf(3,5,2,7)) contentEquals intArrayOf(5,7,7,-1))
     println(오큰수().solution(intArrayOf(3,2,2,7)) contentEquals intArrayOf(7,7,7,-1))
@@ -53,9 +51,7 @@ fun main(args: Array<String>) {
     println(오큰수().solution(intArrayOf(9,9,9,9)) contentEquals intArrayOf(-1,-1,-1,-1))
     println(오큰수().solution(intArrayOf(1,100,3,200,400,300)) contentEquals intArrayOf(100,200,200,400,-1,-1))
     println(오큰수().solution(intArrayOf(1)) contentEquals intArrayOf(-1))
-}
 
-fun basic() {
     val fn = 오큰수()
     try {
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -68,7 +64,5 @@ fun basic() {
         println(Arrays.stream(result)
             .mapToObj { i -> i.toString() }
             .collect(Collectors.joining(" ")))
-    } catch (e: Exception) {
-        //
-    }
+    } catch (e: Exception) { /* */ }
 }
