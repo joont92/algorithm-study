@@ -1,4 +1,4 @@
-package baekjoon.math;
+package baekjoon.math.reference;
 
 /**
  * https://www.acmicpc.net/problem/2745
