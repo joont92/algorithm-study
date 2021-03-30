@@ -1,4 +1,4 @@
-package baekjoon.dp;
+package baekjoon.dp.basic;
 
 import java.util.function.Supplier;
 
