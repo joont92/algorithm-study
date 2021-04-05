@@ -22,15 +22,15 @@ fun main(args: Array<String>) {
 
     try {
         val fn = `2xN 타일링`()
-        val br = BufferedReader(InputStreamReader(System.`in`));
+        val br = BufferedReader(InputStreamReader(System.`in`))
         println(fn.solution(br.readLine().toInt()))
     } catch (e: IOException) {/* */}
 }
 
 class `2xN 타일링` {
     fun solution(n: Int): Int {
-        if (n <= 1) {
-            return n
+        if (n == 1) {
+            return 1
         }
 
         val dp = IntArray(n + 1)

@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     try {
         val fn = `1로 만들기`()
-        val br = BufferedReader(InputStreamReader(System.`in`));
+        val br = BufferedReader(InputStreamReader(System.`in`))
         println(fn.solution(br.readLine().toInt()))
     } catch (e: IOException) {/* */}
 }
