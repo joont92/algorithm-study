@@ -6,8 +6,9 @@ import java.io.InputStreamReader
 
 /**
  * https://www.acmicpc.net/problem/11727
+ *
+ * 2xN 타일링에서 정사각형 타일 놓는 경우의 수를 추가하면 된다
  */
-
 fun main(args: Array<String>) {
     println(`2xN 타일링2`().solution(2) == 3)
     println(`2xN 타일링2`().solution(3) == 5)
