@@ -7,6 +7,11 @@ import kotlin.math.max
 
 /**
  * https://www.acmicpc.net/problem/1912
+ *
+ * 1개부터 n개까지 올라가면서 i번쨰 숫자를 연속으로 더할것인지, i번쨰 숫자부터 다시 시작할것인지 판단하면 된다
+ * - 이 과정중에 최대값을 구하면 된다
+ * - **자기 자신이 선택될 수도 있기 때문에 이어져 온 연속합은 항상 최대값이다**
+ * - 자기 자신이 더 크면 지금까지의 연속합을 끊고 진행하기 때문이다
  */
 fun main(args: Array<String>) {
     println(연속합().solution(intArrayOf(10,-4,3,1,5,6,-35,12,21,-1)) == 33)
