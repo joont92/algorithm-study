@@ -1,4 +1,4 @@
-package baekjoon.bruteforce;
+package baekjoon.bruteforce.basic;
 
 /**
  * https://www.acmicpc.net/problem/3085

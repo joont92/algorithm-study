@@ -1,4 +1,4 @@
-package baekjoon.bruteforce;
+package baekjoon.bruteforce.basic;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
