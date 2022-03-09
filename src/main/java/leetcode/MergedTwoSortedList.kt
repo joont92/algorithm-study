@@ -9,6 +9,7 @@ package leetcode
  *     var next: ListNode? = null
  * }
  */
+// https://leetcode.com/problems/merge-two-sorted-lists/
 class MergedTwoSortedList {
     fun mergeTwoLists(p_list1: ListNode?, p_list2: ListNode?): ListNode? {
         when {

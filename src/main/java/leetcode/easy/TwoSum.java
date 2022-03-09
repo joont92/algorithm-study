@@ -27,7 +27,7 @@ public class TwoSum {
                 return new int[]{map.get(remain), i};
             }
 
-            map.put(map.get(i), i);
+            map.put(nums[i], i);
         }
 
         throw new IllegalArgumentException();
